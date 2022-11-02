@@ -10,9 +10,10 @@ function HomeScreen(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/appi/products");
+      const { data } = await axios.get("/api/products");
       setProducts(data);
     }
+    fetchData();
     return() => {
 
     }
@@ -22,7 +23,7 @@ function HomeScreen(props) {
         <ul className="product">
         {
           products.map(product =>
-            <li>
+            <li key={product.id}>
               <img className="product-image" src={product.image} alt = "product" />
               <div className="product-name">
                 <Link to={`/products/${product.id}`}>{product.name}</Link>

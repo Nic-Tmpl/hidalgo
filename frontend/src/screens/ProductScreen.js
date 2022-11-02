@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { useParams } from 'react-router-dom';
-import data from '../../../backend/data';
+import data from '../data';
 
 
 function ProductScreen(props) {
