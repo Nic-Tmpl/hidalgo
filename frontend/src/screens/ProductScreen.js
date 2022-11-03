@@ -8,16 +8,13 @@ function ProductScreen(props) {
     let { id } = useParams();
     const product = data.products.find(item => item.id == id); //Using truthy equivalence as the id variable is a string, not an int.
     return (
+        <div className="product-display">
         <div className="product-details">
             <div className="details-image">
                 <img src={product.image} alt={product.name} />
             </div>
-            <div className="details-info">
-                <h1>{product.name}</h1>
-                <h3>${product.price}</h3>
-                <p>{product.rating} ({product.numReviews} Reviews)</p>
-            </div>
             <div className="details-order">
+                 <h1>{product.name}</h1>
                 <p>Price: ${product.price}</p>
                 <form id="quantity-form">
                     <label for="quantity">Qty: </label>
@@ -26,6 +23,12 @@ function ProductScreen(props) {
                 <button type="submit" form="quantity-form">Add to Cart</button>
 
             </div>
+        </div>
+        <div className="product-description">
+
+            <p>product description goes here.</p>
+            <p>{product.rating} ({product.numReviews} Reviews)</p>
+        </div>
         </div>
     );
 };

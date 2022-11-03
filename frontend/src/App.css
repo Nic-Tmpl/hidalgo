@@ -79,35 +79,34 @@ li {
 
 /* Product Screen styles */
 
+.product-display {
+  padding-top: 1rem;
+  background-color: white;
+}
+
 .product-details {
   display: flex;
   flex-flow: row wrap;
-  margin: 2rem;
+  background-image: linear-gradient(45deg, #654ea3, #eaafc8);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
+  padding: 6rem 15%;
 }
 
 .details-image {
-  flex: 2 1 50rem;
+  flex: 2 1 40rem;
   margin: 2rem;
 }
 
 .details-image img {
-  max-width: 50rem;
-  max-height: 50rem;
-}
-
-.details-info {
-  flex: 1 1 25rem;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10rem;
+  max-width: 40rem;
+  max-height: 40rem;
 }
 
 .details-order {
   flex: 0 1 25rem;
   padding: 1rem;
-  margin-top: 10rem;
   padding-bottom: 1rem;
   border: .1rem grey solid;
   border-radius: .5rem;
