@@ -26,7 +26,8 @@ function ProductScreen(props) {
         </div>
         <div className="product-description">
 
-            <p>product description goes here.</p>
+            <p>A long winded description of the product goes here.</p>
+            <p>It should cover multiple lines.</p>
             <p>{product.rating} ({product.numReviews} Reviews)</p>
         </div>
         </div>

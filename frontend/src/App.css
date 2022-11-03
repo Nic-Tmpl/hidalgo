@@ -89,14 +89,14 @@ li {
   flex-flow: row wrap;
   background-image: linear-gradient(45deg, #654ea3, #eaafc8);
   clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding: 6rem 15%;
 }
 
 .details-image {
   flex: 2 1 40rem;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .details-image img {
@@ -105,11 +105,12 @@ li {
 }
 
 .details-order {
-  flex: 0 1 25rem;
+  flex: 1 1 25rem;
   padding: 1rem;
   padding-bottom: 1rem;
   border: .1rem grey solid;
   border-radius: .5rem;
+  color: white;
 }
 
 .quantity-form label {
@@ -122,8 +123,15 @@ li {
 .details-order button {
   margin-top: 2rem;
   padding: 1rem;
-  width: 25rem;
+  width: 100%;
   border: .1rem black solid;
   background-color: gold;
   cursor: pointer;
+}
+
+.product-description {
+  background-image: linear-gradient(-135deg, #ff0084, #33001b);
+  color: white;
+  clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%); 
+  padding: 6rem 15%;
 }
