@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
-
+import store from '../store';
 
 function HomeScreen(props) {
 
-  const productList = useSelector(state => state.productList);
+  const productList = useSelector(store => store);
   const { products, loading, error} = productList;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listProducts());
-
     return() => {
 
     }
-  }, [])
+  }, [dispatch])
     return (
-
+      loading ? <div>loading...</div> :
+      error ? <div>{error}</div> :
         <ul className="product">
         {
           products.map(product =>
