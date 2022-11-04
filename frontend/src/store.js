@@ -1,11 +1,10 @@
-import { createStore, combineReducers } from 'react-redux';
+import { configureStore  } from '@reduxjs/toolkit';
 import { productListReducer } from './reducers/productReducers';
 
+const store = configureStore({
+    reducer: {
+        products: productListReducer,
+    }
+});
 
-const initialState = {};
-const reducer = combineReducers ({
-    productList: productListReducer,
-})
-
-const store = createStore(reducer, initialState);
 export default store;
