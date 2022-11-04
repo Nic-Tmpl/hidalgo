@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
-import store from '../store';
 
 function HomeScreen(props) {
 
