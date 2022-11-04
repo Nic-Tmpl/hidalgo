@@ -7,4 +7,5 @@ const reducer = combineReducers ({
     productList: productListReducer,
 })
 
-const store = createStore(reducer, initialState)
+const store = createStore(reducer, initialState);
+export default store;
