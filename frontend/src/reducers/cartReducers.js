@@ -6,7 +6,6 @@ const cartReducer = (state = {cartItems: []}, action) => {
             const item = action.payload;
             const product = state.cartItems.find(x => x.product === item.product );
             if (product) {
-              cartItems
               return {
                 cartItems:
                     state.cartItems.map(x => x.product === product.product ? item : x)
@@ -15,3 +14,5 @@ const cartReducer = (state = {cartItems: []}, action) => {
             return { cartItems: [...state.cartItems, item] }
     }
 }
+
+export { cartReducer };
