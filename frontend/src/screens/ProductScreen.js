@@ -6,13 +6,15 @@ import { detailsProduct } from '../actions/productActions';
 
 
 function ProductScreen(props) {
-    let { id } = useParams();
+
+   const { id } = useParams(); //useParams returns an object with string values
+   const intId = parseInt(id);  // this converts it to an integer.
    const productDetails = useSelector(store => store.productDetails);
    const { product, loading, error } = productDetails;
    const dispatch = useDispatch;
 
    useEffect(() => {
-    dispatch(detailsProduct(id));   
+    dispatch(detailsProduct(intId));   
     return() => {
     }
    }, [dispatch])
