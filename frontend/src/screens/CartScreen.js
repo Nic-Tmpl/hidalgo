@@ -34,21 +34,20 @@ function CartScreen() {
                         <h3>
                             Shopping Cart
                         </h3>
-                        <div> Price
-
-                        </div>
                     </li>
                     {
                         cartItems.length === 0 ?
                         <div> Cart is empty </div>
                         :
                         cartItems.map( item =>
+                            <li key={item.product.id}>
                             <div>
                                 <img src={item.product.image} alt={item.product.name} />
                                 <div className="item-name">{item.name}</div>
                                 <div>Qty: {item.quantity}</div>
                                 <div>Price: {item.product.price}</div>
                             </div>
+                            </li>
                         )
                     }
                 </ul>
