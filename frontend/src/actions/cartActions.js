@@ -14,3 +14,5 @@ const addToCart = (productId, quantity) => async (dispatch) => {
 
     }
 }
+
+export { addToCart };

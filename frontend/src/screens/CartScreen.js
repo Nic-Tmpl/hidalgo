@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../App.css';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../reducers/cartReducers';
+import { addToCart } from '../actions/cartActions';
 
 
 
