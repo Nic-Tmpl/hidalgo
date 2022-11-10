@@ -11,9 +11,6 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(listProducts());
-    return() => {
-
-    }
   }, [])
     return (
       loading ? <div>loading...</div> :
