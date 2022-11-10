@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
 import { useParams } from 'react-router-dom';
-import data from '../data';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function ProductScreen(props) {
     let { id } = useParams();
-    const product = data.products.find(item => item.id == id); //Using truthy equivalence as the id variable is a string, not an int.
+   const productDetails = useSelector(store => store.productDetails);
+   const dispatch = useDispatch;
+
+   useEffect(() => {
+    dispatch(detailsProduct());
+   }, [])
+
     return (
         <div className="product-details">
             <div className="details-image">
