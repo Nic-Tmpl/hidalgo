@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import '../App.css';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../actions/cartActions';
 
@@ -34,6 +34,7 @@ function CartScreen() {
                         <h3>
                             Shopping Cart
                         </h3>
+                        <div>Price</div>
                     </li>
                     {
                         cartItems.length === 0 ?
@@ -41,12 +42,14 @@ function CartScreen() {
                         :
                         cartItems.map( item =>
                             <li key={item.product.id}>
-                            <div>
-                                <img src={item.product.image} alt={item.product.name} />
-                                <div className="item-name">{item.name}</div>
-                                <div>Qty: {item.quantity}</div>
-                                <div>Price: {item.product.price}</div>
-                            </div>
+                                <div className="cart-item-image">
+                                    <img src={item.product.image} alt={item.product.name} />
+                                </div>
+                                <div className="cart-item-name">
+                                    <Link to={`/products/${item.product.id}`}>{item.product.name}</Link>
+                                    <div className="quantity">Qty: {item.quantity}</div>
+                                </div>
+                                <div className="cart-item-price">${item.product.price}</div>
                             </li>
                         )
                     }
