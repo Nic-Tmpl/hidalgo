@@ -15,7 +15,7 @@ function ProductScreen(props) {
     dispatch(detailsProduct(id));   
     return() => {
     }
-   }, [])
+   }, [dispatch])
 
     return (
         loading ? <div>loading...</div> :
@@ -32,8 +32,8 @@ function ProductScreen(props) {
             <div className="details-order">
                 <p>Price: ${product.price}</p>
                 <form id="quantity-form">
-                    <label for="quantity">Qty: </label>
-                    <input id="quantity" type="number" name="quantity" min="0" value="1"/><br/>
+                    <label htmlFor="quantity">Qty: </label>
+                    <input id="quantity" type="number" name="quantity" min="0" defaultValue="1"/><br/>
                 </form>
                 <button type="submit" form="quantity-form">Add to Cart</button>
 
