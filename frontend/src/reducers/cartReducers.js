@@ -12,6 +12,8 @@ const cartReducer = (state = {cartItems: []}, action) => {
              };
             }
             return { cartItems: [...state.cartItems, item] }
+        default: 
+            return state;
     }
 }
 
