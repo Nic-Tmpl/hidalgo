@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import '../App.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { detailsProduct } from '../actions/productActions';
 
 
 function ProductScreen(props) {
@@ -11,7 +12,9 @@ function ProductScreen(props) {
    const dispatch = useDispatch;
 
    useEffect(() => {
-    dispatch(detailsProduct());
+    dispatch(detailsProduct(id));   
+    return() => {
+    }
    }, [])
 
     return (

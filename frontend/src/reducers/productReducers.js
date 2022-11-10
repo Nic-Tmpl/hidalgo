@@ -26,4 +26,4 @@ const productDetailsReducer = (state = { product: {} }, action) => {
     }
 }
 
-export { productListReducer };
+export { productListReducer, productDetailsReducer };
