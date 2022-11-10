@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
 
 
 function ProductScreen(props) {
 
+   const [qty, setQty] = useState(1);
+
    const { id } = useParams(); //useParams returns an object with string values
    const intId = parseInt(id);  // this converts it to an integer.
+   const navigate = useNavigate(); 
+
    const productDetails = useSelector(store => store.productDetails);
    const { product, loading, error } = productDetails;
    const dispatch = useDispatch();
@@ -20,6 +24,10 @@ function ProductScreen(props) {
     }
    }, [])
 
+const handleAddToCart = (e) => {
+    e.preventDefault();
+    navigate(`/cart/${intId}?quantity=${qty}`);
+}
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
@@ -34,9 +42,9 @@ function ProductScreen(props) {
             </div>
             <div className="details-order">
                 <p>Price: ${product.price}</p>
-                <form id="quantity-form">
+                <form id="quantity-form" onSubmit={handleAddToCart}>
                     <label htmlFor="quantity">Qty: </label>
-                    <input id="quantity" type="number" name="quantity" min="0" defaultValue="1"/><br/>
+                    <input id="quantity" type="number" name="quantity" min="0" value={qty} onChange={(e) => setQty(e.target.value)}/><br/>
                 </form>
                 <button type="submit" form="quantity-form">Add to Cart</button>
 
