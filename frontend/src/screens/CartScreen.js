@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../App.css';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 
 
@@ -24,6 +24,10 @@ function CartScreen() {
             console.log('i fire once');
         }
     }, []);
+
+    const handleRemoveFromCart = (productId) => {
+        dispatch(removeFromCart(productId));
+    }
 
 
     return (
@@ -48,6 +52,7 @@ function CartScreen() {
                                 <div className="cart-item-name">
                                     <Link to={`/products/${item.product.id}`}>{item.product.name}</Link>
                                     <div className="quantity">Qty: {item.quantity}</div>
+                                    <button onClick={(e) => handleRemoveFromCart(item.product)}>Delete</button>
                                 </div>
                                 <div className="cart-item-price">${item.product.price}</div>
                             </li>
