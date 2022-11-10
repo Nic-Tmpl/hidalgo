@@ -4,12 +4,15 @@ const data = require('./data');
 const app = express();
 const PORT = 5000;
 
-app.get("api/products/:id", (req, res) => {
+app.get("/api/products/:id", (req, res) => {
     const { id } = req.params;
-    const product = data.products.find(product => product.id === id);
+    const intId = parseInt(id);
+    const product = data.products.find(product => product.id == intId);
     if (product) {
         res.send(product);
     } else {
+        console.log(product)
+        console.log(intId);
         res.status(404).send({msg: "Product Not Found."});
     }
 })
