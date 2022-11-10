@@ -11,13 +11,14 @@ function ProductScreen(props) {
    const intId = parseInt(id);  // this converts it to an integer.
    const productDetails = useSelector(store => store.productDetails);
    const { product, loading, error } = productDetails;
-   const dispatch = useDispatch;
+   const dispatch = useDispatch();
 
    useEffect(() => {
     dispatch(detailsProduct(intId));   
     return() => {
+
     }
-   }, [dispatch])
+   }, [])
 
     return (
         loading ? <div>loading...</div> :

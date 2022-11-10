@@ -14,7 +14,7 @@ function HomeScreen(props) {
     return() => {
 
     }
-  }, [dispatch])
+  }, [])
     return (
       loading ? <div>loading...</div> :
       error ? <div>{error}</div> :
