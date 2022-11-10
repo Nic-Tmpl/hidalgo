@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function ProductScreen(props) {
     let { id } = useParams();
    const productDetails = useSelector(store => store.productDetails);
+   const { product, loading, error } = productDetails;
    const dispatch = useDispatch;
 
    useEffect(() => {
@@ -14,6 +15,8 @@ function ProductScreen(props) {
    }, [])
 
     return (
+        loading ? <div>loading...</div> :
+        error ? <div>{error}</div> :
         <div className="product-details">
             <div className="details-image">
                 <img src={product.image} alt={product.name} />
