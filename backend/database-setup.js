@@ -9,7 +9,8 @@ const createTables = async () => {
       password        VARCHAR,
       email           VARCHAR(50),      
       first_name      VARCHAR(50),
-      last_name       VARCHAR(50)
+      last_name       VARCHAR(50),
+      isAdmin         BOOLEAN DEFAULT false
     );
     `
 
