@@ -19,14 +19,14 @@ passport.use(new LocalStrategy(
     try {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
             if(rows.email = null) {
-                return done(null, false, {message: `No user by that email`});
+                return done(null, false, {message: `Incorrect email or password.`});
             }
     } catch (e) {
         return done(e);
     }
     let match = await comparePasswords(password, rows.password);
     if (!match) {
-        return done(null,false, {message: 'Password Incorrect'});
+        return done(null,false, {message: 'Incorrect email or password.'});
     }
         
     return done(null, row);
