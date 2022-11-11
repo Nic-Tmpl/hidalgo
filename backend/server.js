@@ -1,4 +1,3 @@
-//index for the E-commerce app project
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
