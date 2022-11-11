@@ -11,7 +11,6 @@ function CartScreen() {
     const [queryParams] = useSearchParams();
     const qty = Number(queryParams.get('quantity'));
     const { id } = useParams();
-    const productId = Number.parseInt(id);
     const navigate = useNavigate();
 
     const cart = useSelector(store => store.cart);
@@ -20,14 +19,14 @@ function CartScreen() {
 
 
     useEffect(() => {
-        if(productId) {
-            dispatch(addToCart(productId, qty));
+        if(id) {
+            dispatch(addToCart(id, qty));
             console.log('i fire once');
         }
     }, []);
 
-    const handleRemoveFromCart = (productId) => {
-        dispatch(removeFromCart(productId));
+    const handleRemoveFromCart = (id) => {
+        dispatch(removeFromCart(id));
     }
 
     const handleCheckout = () => {

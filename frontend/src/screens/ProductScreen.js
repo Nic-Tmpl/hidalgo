@@ -10,7 +10,6 @@ function ProductScreen(props) {
    const [qty, setQty] = useState(1); //uses state to manage quantity of items selected for cart
 
    const { id } = useParams(); //useParams returns an object with string values
-   const intId = parseInt(id);  // this converts it to an integer.
    const navigate = useNavigate(); // use navigate is a react-router function to push user to a new page
 
    const productDetails = useSelector(store => store.productDetails);
@@ -18,12 +17,12 @@ function ProductScreen(props) {
    const dispatch = useDispatch();
 
    useEffect(() => {
-    dispatch(detailsProduct(intId));   
+    dispatch(detailsProduct(id));   
    }, [])
 
 const handleAddToCart = (e) => {
     e.preventDefault();
-    navigate(`/cart/${intId}?quantity=${qty}`);
+    navigate(`/cart/${id}?quantity=${qty}`);
 }
     return (
         loading ? <div>loading...</div> :

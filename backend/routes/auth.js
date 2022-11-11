@@ -26,7 +26,7 @@ passport.use(new LocalStrategy(
     }
     let match = await comparePasswords(password, rows.password);
     if (!match) {
-        return done(null,false, {message: 'Not a matching password'});
+        return done(null,false, {message: 'Password Incorrect'});
     }
         
     return done(null, row);
