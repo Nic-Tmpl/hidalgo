@@ -30,7 +30,7 @@ function CartScreen() {
     }
 
     const handleCheckout = () => {
-        navigate("/signin?redirect=shipping")
+        navigate("/auth/login?redirect=shipping")
     }
 
 

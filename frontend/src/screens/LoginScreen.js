@@ -1,51 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from '../actions/productActions';
+import { Link } from 'react-router-dom';
 
 
 function LoginScreen(props) {
 
-   const [qty, setQty] = useState(1); //uses state to manage quantity of items selected for cart
-
-   const { id } = useParams(); //useParams returns an object with string values
-   const navigate = useNavigate(); // use navigate is a react-router function to push user to a new page
-
-   const productDetails = useSelector(store => store.productDetails);
-   const { product, loading, error } = productDetails;
-   const dispatch = useDispatch();
-
-   useEffect(() => {
-    dispatch(detailsProduct(id));   
-   }, [])
-
-const handleAddToCart = (e) => {
-    e.preventDefault();
-    navigate(`/cart/${id}?quantity=${qty}`);
-}
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
-        <div className="product-details">
-            <div className="details-image">
-                <img src={product.image} alt={product.name} />
-            </div>
-            <div className="details-info">
-                <h1>{product.name}</h1>
-                <h3>${product.price}</h3>
-                <p>{product.rating} ({product.numReviews} Reviews)</p>
-            </div>
-            <div className="details-order">
-                <p>Price: ${product.price}</p>
-                <form id="quantity-form" onSubmit={handleAddToCart}>
-                    <label htmlFor="quantity">Qty: </label>
-                    <input id="quantity" type="number" name="quantity" min="0" value={qty} onChange={(e) => setQty(e.target.value)}/><br/>
-                </form>
-                <button type="submit" form="quantity-form">Add to Cart</button>
-
-            </div>
-        </div>
+        <div className="login">
+        <h1>Sign in</h1>
+        <form action="/login/password" method="post">
+            <section>
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" autocomplete="username" required autofocus />
+            </section>
+            <section>
+                <label for="current-password">Password</label>
+                <input id="current-password" name="password" type="password" autocomplete="current-password" required />
+            </section>
+            <button type="submit">Sign in</button>
+        </form>
+        <p className="help">Don't have an account? <Link to="auth/signup">Sign up</Link></p>
+    </div>
     );
 };
 
