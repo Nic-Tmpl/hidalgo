@@ -12,8 +12,8 @@ function LoginScreen(props) {
         <h1>Sign in</h1>
         <form action="/login/password" method="post">
             <section>
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text" autocomplete="username" required autofocus />
+                <label for="email">Email: </label>
+                <input id="email" name="emaeil" type="email" autocomplete="email" required autofocus />
             </section>
             <section>
                 <label for="current-password">Password</label>
