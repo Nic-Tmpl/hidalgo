@@ -18,20 +18,18 @@ passport.use(new LocalStrategy(
     async (email, password, done) => {
     try {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-            if(rows.email = null) {
+            if(rows[0].email == null) {
                 return done(null, false, {message: `Incorrect email or password.`});
             }
+        let match = await comparePasswords(password, rows[0].password);
+        if (!match) {
+            return done(null,false, {message: 'Incorrect email or password.'});
+        }
+        return done(null, rows);
     } catch (e) {
         return done(e);
     }
-    let match = await comparePasswords(password, rows.password);
-    if (!match) {
-        return done(null,false, {message: 'Incorrect email or password.'});
-    }
-        
-    return done(null, row);
-    }
-));
+    }));
 
 passport.serializeUser((user, cb) => {
     process.nextTick(() => {
