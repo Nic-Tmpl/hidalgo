@@ -10,5 +10,5 @@ module.exports = app => {
     //app.use('/cart', cart);
    // app.use('/orders', orders);
     app.use('/products', products);
-   // app.use('/auth', auth);
+    app.use('/', auth);
 };
