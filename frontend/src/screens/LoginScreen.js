@@ -19,9 +19,10 @@ function LoginScreen(props) {
                 <label for="current-password">Password</label>
                 <input id="current-password" name="password" type="password" autocomplete="current-password" required />
             </section>
+
             <button type="submit">Sign in</button>
         </form>
-        <p className="help">Don't have an account? <Link to="auth/signup">Sign up</Link></p>
+        <p className="help">Don't have an account? <Link to="/signup">Sign up</Link></p>
     </div>
     );
 };
