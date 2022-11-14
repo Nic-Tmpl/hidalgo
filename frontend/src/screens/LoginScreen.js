@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 function LoginScreen(props) {
 
     return (
-        loading ? <div>loading...</div> :
-        error ? <div>{error}</div> :
+       // loading ? <div>loading...</div> :
+       // error ? <div>{error}</div> :
         <div className="login">
         <h1>Sign in</h1>
         <form action="/login/password" method="post">

@@ -18,7 +18,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
-              <Route path="/auth/login" element={<LoginScreen />} />
+              <Route path="/login" element={<LoginScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart/:id" element={<CartScreen />} />
               <Route path="/" element={<HomeScreen />} />
