@@ -202,14 +202,19 @@ li {
 /* Form styles */
 
 .form-container {
+  background-image: linear-gradient(-135deg, #ff0084, #33001b);
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 3rem;
+  min-height: 90vh;
+
 }
 
 .form-content{
+  margin-top: 10vh;
+  background-color:aliceblue;
+  opacity: 0.8;
   width: 32rem;
   padding: 2rem;
   border: .1rem black solid;
@@ -234,6 +239,7 @@ li {
   padding: 1rem;
   width: 100%;
   border: .1rem black solid;
+  border-radius: .5rem;
   background-color: gold;
   cursor: pointer;
 }
