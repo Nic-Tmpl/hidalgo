@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
         <header className="header">
-          <div className="logo">Hidalgo</div>
+          <div className="logo"><Link to="/">Hidalgo</Link></div>
           <menu>
             <li>Cart</li>
             <li><Link to="/login">Login</Link></li>
