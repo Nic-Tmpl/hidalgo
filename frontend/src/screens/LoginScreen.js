@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import '../App.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../actions/userActions';
+import { Link } from 'react-router-dom';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { login } from '../actions/userActions';
 
 
 function LoginScreen(props) {
-    const [email, setEmail] = useState('');
+    /*const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const userLogin = useSelector(store => store.useLogin);
+    const userLogin = useSelector(store => store.userLogin);
     const { loading, userInfo, error} = userLogin;
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const navigate = useNavigate();*/
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (userInfo) {
             navigate('/');
         }
-    }, [userInfo]);
+    }, [userInfo]);*/
 
-    const submitHandler = (e) => {
+   /* const submitHandler = (e) => {
         e.preventDefault();
         dispatch(login(email, password));
-    }
+    }*/
 
 
     return (
@@ -31,16 +31,15 @@ function LoginScreen(props) {
         <div className="form-container">
             <div className="form-content">
         <h1>Sign in</h1>
-        <form onSubmit={submitHandler}>
+        <form action="/login/password" method="post">
             <section>
-                <label for="email">Email: </label>
-                <input id="email" name="email" type="email" autocomplete="email" required autofocus onChange={((e) => setEmail(e.target.value))} />
+                <label htmlFor="email">Email: </label>
+                <input id="email" name="email" type="email" autoComplete="email" required autoFocus />
             </section>
             <section>
-                <label for="current-password">Password</label>
-                <input id="current-password" name="password" type="password" autocomplete="current-password" required onChange={((e) => setPassword(e.tarrget.value))} />
+                <label htmlFor="current-password">Password</label>
+                <input id="current-password" name="password" type="password" autoComplete="current-password" required />
             </section>
-
             <button type="submit">Sign in</button>
         </form>
         <p className="help">Don't have an account? <Link to="/signup">Sign up</Link></p>
