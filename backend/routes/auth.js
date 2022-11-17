@@ -49,11 +49,10 @@ const router = new Router();
 module.exports = router;
 
 router.get('/login', (req, res, next) => {
-    res.send("something useful");
+    res.send("user authenticated.");
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
-    console.log(req);
     res.json ({userInfo: req.user.dataValues})
 });
 
@@ -65,7 +64,7 @@ router.post('/logout', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('signup');
+    res.render('user added.');
 });
 
 router.post('/signup', async(req, res) => {

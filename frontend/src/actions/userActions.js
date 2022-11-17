@@ -1,14 +1,30 @@
 import axios from 'axios';
-import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from '../constants/userConstants';
+import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS } from '../constants/userConstants';
 
 
 const login = (email, password) => async (dispatch) => {
     dispatch({type: USER_SIGNIN_REQUEST, payload: {email, password}});
     try {
-        const result = await axios.post("/login", {email: email, password: password});
-        dispatch({type: USER_SIGNIN_SUCCESS, payload: result});
+        //currently not destructuring data as I am uncertain how much info is needed in state.
+        const data = await axios.post("/login", {email: email, password: password});
+        dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
     } catch (error) {
        dispatch({ type: USER_SIGNIN_FAIL, payload: error.message }); 
+    }
+}
+
+const signup = (email, password, firstName, lastName) => async (dispatch) => {
+    dispatch({type: USER_SIGNUP_REQUEST, payload: {email, password, firstName, lastName}});
+    try {
+        const { data } = await axios.post("signup", {
+            email: email, 
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+         });
+         dispatch({type: USER_SIGNUP_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({ type: USER_SIGNUP_FAIL, payload: error.message});
     }
 }
 
