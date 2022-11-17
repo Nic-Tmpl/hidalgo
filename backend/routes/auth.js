@@ -25,7 +25,7 @@ passport.use(new LocalStrategy(
         if (!match) {
             return done(null,false, {message: 'Incorrect email or password.'});
         }
-        return done(null, rows);
+        return done(null, rows[0]);
     } catch (e) {
         return done(e);
     }
@@ -49,13 +49,13 @@ const router = new Router();
 module.exports = router;
 
 router.get('/login', (req, res, next) => {
-    res.render('login');
+    res.send("something useful");
 });
 
-router.post('/login/password', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
+router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+    console.log(req);
+    res.json ({userInfo: req.user.dataValues})
+});
 
 router.post('/logout', (req, res, next) => {
     req.logout((err) => {

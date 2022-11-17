@@ -1,44 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
-//import { useDispatch, useSelector } from 'react-redux';
-//import { login } from '../actions/userActions';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../actions/userActions';
 
 
 function LoginScreen(props) {
-    /*const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const userLogin = useSelector(store => store.userLogin);
     const { loading, userInfo, error} = userLogin;
     const dispatch = useDispatch();
-    const navigate = useNavigate();*/
+    const navigate = useNavigate();
 
-   /* useEffect(() => {
+    useEffect(() => {
         if (userInfo) {
-            navigate('/');
+           navigate('/');
         }
-    }, [userInfo]);*/
+    }, [userInfo]);
 
-   /* const submitHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
         dispatch(login(email, password));
-    }*/
+    }
 
 
     return (
-       // loading ? <div>loading...</div> :
-       // error ? <div>{error}</div> :
+        loading ? <div>loading...</div> :
+        error ? <div>{error}</div> :
         <div className="form-container">
             <div className="form-content">
         <h1>Sign in</h1>
-        <form action="/login/password" method="post">
+        <form onSubmit={submitHandler}>
             <section>
                 <label htmlFor="email">Email: </label>
-                <input id="email" name="email" type="email" autoComplete="email" required autoFocus />
+                <input id="email" name="email" type="email" autoComplete="email" required autoFocus onChange={(e) => setEmail(e.target.value)} />
             </section>
             <section>
-                <label htmlFor="current-password">Password</label>
-                <input id="current-password" name="password" type="password" autoComplete="current-password" required />
+                <label htmlFor="password">Password</label>
+                <input id="password" name="password" type="password" autoComplete="current-password" required onChange={(e)=> setPassword(e.target.value)} />
             </section>
             <button type="submit">Sign in</button>
         </form>
