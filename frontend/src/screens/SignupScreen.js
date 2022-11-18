@@ -47,7 +47,7 @@ function SignupScreen(props) {
                 </section>
                 <section>
                     <label htmlFor="firstName">First Name: </label>
-                    <input id="firstName" name="firstName" type="text" autComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
+                    <input id="firstName" name="firstName" type="text" autoComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
                 </section>
                 <section>
                     <label htmlFor="lastName">Last Name: </label>
