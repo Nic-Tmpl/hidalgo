@@ -67,6 +67,42 @@ li {
   width: 100%;
 }
 
+/* Landing page styles */
+.landing {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.jumbotron {
+  min-height: 50vh;
+
+}
+
+.about {
+  min-height: 40vh;
+}
+
+.productBar {
+  min-height: 30vh;
+}
+
+.productBar button {
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 100%;
+  border: .1rem black solid;
+  border-radius: .5rem;
+  background-color: gold;
+  cursor: pointer;
+}
+
+/* Product page styles */
+
 .product {
   display: flex;
   flex-flow: row wrap;
