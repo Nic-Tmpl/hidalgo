@@ -1,3 +1,4 @@
+import e from 'express';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
@@ -5,6 +6,12 @@ import '../App.css';
 
 
 function LandingScreen() {
+
+    const navigate = useNavigate();
+
+    const redirectHandler = () => {
+        navigate("/products");
+    }
 
 
     return (
@@ -21,7 +28,7 @@ function LandingScreen() {
             </p>
         </div>
         <div className="productBar">
-            <button onClick={redirectHandler}></button>
+            <button onClick={redirectHandler}>SHOP ALL PRODUCTS</button>
         </div>
      </div>
     )}
