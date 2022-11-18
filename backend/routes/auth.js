@@ -64,7 +64,7 @@ router.post('/logout', (req, res, next) => {
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('user added.');
+    res.send('user added.');
 });
 
 router.post('/signup', async(req, res) => {
@@ -76,7 +76,7 @@ router.post('/signup', async(req, res) => {
             const newUser = await db.query(`INSERT INTO users (email, password, first_name, last_name)
                                              VALUES ($1, $2, $3, $4)`,
                             [email, hashedPassword, first_name, last_name]);
-            res.send(newUser);
+            res.send(200);
         }  else {
             res.send('User already Exists!');
         }});
