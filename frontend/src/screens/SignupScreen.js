@@ -39,19 +39,19 @@ function SignupScreen(props) {
             <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="email">Email: </label>
-                    <input id="email" name="email" type="email" autocomplete="email" required onChange={(e) => setEmail(e.target.value)} />
+                    <input id="email" name="email" type="email" autoComplete="email" required onChange={(e) => setEmail(e.target.value)} />
                 </section>
                 <section>
                     <label htmlFor="password">Password: </label>
-                    <input id="password" name="password" type="password" autocomplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
+                    <input id="password" name="password" type="password" autoComplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
                 </section>
                 <section>
-                    <label for="firstName">First Name: </label>
-                    <input id="firstName" name="firstName" type="text" autocomplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
+                    <label htmlFor="firstName">First Name: </label>
+                    <input id="firstName" name="firstName" type="text" autComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
                 </section>
                 <section>
-                    <label for="lastName">Last Name: </label>
-                    <input id="lastName" name="lastName" type="text" autocomplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
+                    <label htmlFor="lastName">Last Name: </label>
+                    <input id="lastName" name="lastName" type="text" autoComplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
                 </section>
                 <button type="submit">Sign up</button>
             </form>
