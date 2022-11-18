@@ -21,9 +21,10 @@ function App() {
             <Routes>
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
+              <Route path="/products" element={<HomeScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart/:id" element={<CartScreen />} />
-              <Route path="/" element={<HomeScreen />} />
+              <Route path="/" element={<LandingScreen />} />
             </Routes>
           </div>
       </main>
