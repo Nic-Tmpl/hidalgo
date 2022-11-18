@@ -1,30 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signup } from '../actions/userActions';
+
 
 
 function SignupScreen(props) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const userSignup = useSelector(store => store.userSignup);
+    const { loading, userInfo, error} = userSignup;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(signup(email, password, firstName, lastName));
+    }
 
     return (
+        loading ? <div>loading...</div> :
+        error ? <div>{error}</div> :
         <div className="form-container">
             <div className="form-content">
             <h1>Sign up</h1>
-            <form action="/signup" method="post">
+            <form onSubmit={submitHandler}>
                 <section>
                     <label for="email">Email: </label>
-                    <input id="email" name="email" type="email" autocomplete="email" required />
+                    <input id="email" name="email" type="email" autocomplete="email" required onChange={(e) => setEmail(e.target.value)} />
                 </section>
                 <section>
-                    <label for="new-password">Password: </label>
-                    <input id="new-password" name="password" type="password" autocomplete="new-password" required />
+                    <label for="password">Password: </label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
                 </section>
                 <section>
-                    <label for="first_name">First Name: </label>
-                    <input id="first_name" name="first_name" type="text" autocomplete="first_name" required />
+                    <label for="firstName">First Name: </label>
+                    <input id="firstName" name="firstName" type="text" autocomplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
                 </section>
                 <section>
-                    <label for="last_name">Last Name: </label>
-                    <input id="last_name" name="last_name" type="text" autocomplete="last_name" required />
+                    <label for="lastName">Last Name: </label>
+                    <input id="lastName" name="lastName" type="text" autocomplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
                 </section>
                 <button type="submit">Sign up</button>
             </form>

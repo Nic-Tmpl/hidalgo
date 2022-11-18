@@ -16,7 +16,8 @@ const login = (email, password) => async (dispatch) => {
 const signup = (email, password, firstName, lastName) => async (dispatch) => {
     dispatch({type: USER_SIGNUP_REQUEST, payload: {email, password, firstName, lastName}});
     try {
-        const { data } = await axios.post("signup", {
+        // not destructuring data here as well, for the same reason.
+        const data = await axios.post("signup", {
             email: email, 
             password: password,
             first_name: firstName,
@@ -28,4 +29,4 @@ const signup = (email, password, firstName, lastName) => async (dispatch) => {
     }
 }
 
-export { login };
+export { login, signup };
