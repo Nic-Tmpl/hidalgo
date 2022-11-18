@@ -2,7 +2,7 @@ import React, {useEffect, useState } from 'react';
 import '../App.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../actions/userActions';
+import { login, signup } from '../actions/userActions';
 
 
 
@@ -21,6 +21,15 @@ function SignupScreen(props) {
         dispatch(signup(email, password, firstName, lastName));
     }
 
+    useEffect(() => {
+        if (userInfo) {
+            dispatch(login(email, password));
+            navigate('/');
+        }
+    })
+
+
+
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
@@ -29,11 +38,11 @@ function SignupScreen(props) {
             <h1>Sign up</h1>
             <form onSubmit={submitHandler}>
                 <section>
-                    <label for="email">Email: </label>
+                    <label htmlFor="email">Email: </label>
                     <input id="email" name="email" type="email" autocomplete="email" required onChange={(e) => setEmail(e.target.value)} />
                 </section>
                 <section>
-                    <label for="password">Password: </label>
+                    <label htmlFor="password">Password: </label>
                     <input id="password" name="password" type="password" autocomplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
                 </section>
                 <section>
