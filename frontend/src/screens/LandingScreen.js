@@ -13,8 +13,10 @@ function LandingScreen() {
 
     return (
     <div className="landing">
-        <div className="jumbotron">
-            <h1>HIDALGO</h1>
+        <div className="background">
+            <div className="jumbotron">
+             <h1>Hidalgo</h1>
+            </div>
         </div>
         <div className="about">
             <p>You ever get hungry? We get hungry all the time. You ever look at some guy, wearing some nice shirt or a fine pair

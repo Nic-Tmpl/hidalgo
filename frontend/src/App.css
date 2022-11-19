@@ -76,11 +76,31 @@ li {
   flex-direction: column;
 }
 
-.jumbotron {
-  min-height: 50vh;
-
+.background {
+  margin-top: 2rem;
+  min-height: 70vh;
+  background: url(../public/images/landing.jpg);
+  background-size: cover;
+  width: 100%;
+  justify-content: center;
 }
 
+.jumbotron {
+  display: flex;
+  align-items: center;
+  background-color: rgba(223, 232, 53, 0.4);
+  min-height: 70vh;
+}
+
+.jumbotron h1 {
+  margin-left: 3rem;
+  font-weight: 400;
+  font-size: 16rem;
+  background-image: linear-gradient(60deg, #3e35e8, #35e88f); 
+  background-clip: text;
+  color: transparent;
+
+}
 .about {
   min-height: 40vh;
 }
