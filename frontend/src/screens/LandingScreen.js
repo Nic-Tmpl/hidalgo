@@ -26,8 +26,10 @@ function LandingScreen() {
                 looking for? <Link to="/products">Pants</Link>? Or just <Link to="/products">food</Link>?
             </p>
         </div>
-        <div className="productBar">
-            <button onClick={redirectHandler}>SHOP ALL PRODUCTS</button>
+        <div className="productBackground">
+            <div className="productBar">
+                <button onClick={redirectHandler}>SHOP ALL PRODUCTS</button>
+            </div>
         </div>
      </div>
     )}
