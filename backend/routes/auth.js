@@ -14,20 +14,19 @@ const comparePasswords = async(password, hash) => {
     return false;
 };
 
-passport.use(new LocalStrategy(
-    async (email, password, done) => {
+passport.use(new LocalStrategy(async function verify(email, password, cb) {
     try {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-            if(rows[0].email == null) {
-                return done(null, false, {message: `Incorrect email or password.`});
+            if(!rows) {
+                return cb(null, false, {message: `Incorrect email or password.`});
             }
         let match = await comparePasswords(password, rows[0].password);
         if (!match) {
-            return done(null,false, {message: 'Incorrect email or password.'});
+            return cb(null,false, {message: 'Incorrect email or password.'});
         }
-        return done(null, rows[0]);
+        return cb(null, rows[0]);
     } catch (e) {
-        return done(e);
+        return cb(e);
     }
     }));
 
@@ -52,8 +51,8 @@ router.get('/login', (req, res, next) => {
     res.send("user authenticated.");
 });
 
-router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
-    res.json ({userInfo: req.user.dataValues})
+router.post('/login/password', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+    res.send(req.user);
 });
 
 router.post('/logout', (req, res, next) => {
