@@ -17,6 +17,7 @@ const comparePasswords = async(password, hash) => {
 passport.use(new LocalStrategy(async function verify(email, password, cb) {
     try {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+        console.log(rows);
             if(!rows) {
                 return cb(null, false, {message: `Incorrect email or password.`});
             }
@@ -51,7 +52,7 @@ router.get('/login', (req, res, next) => {
     res.send("user authenticated.");
 });
 
-router.post('/login/password', passport.authenticate('local', {failureRedirect: '/login'}), (req, res) => {
+router.post('/login/password', passport.authenticate('local', {failureRedirect: '/login', failureMessage: true }), (req, res) => {
     res.send(req.user);
 });
 
