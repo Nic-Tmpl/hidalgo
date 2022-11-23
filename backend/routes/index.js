@@ -6,9 +6,9 @@ const auth = require('./auth');
 
 //export takes in a variable, app, which is passed in from the main index.js file.
 module.exports = app => {
-    //app.use('/users', users);
-    //app.use('/cart', cart);
-   // app.use('/orders', orders);
+    app.use('/users', users);
+    app.use('/cart', cart);
+    app.use('/orders', orders);
     app.use('/products', products);
     app.use('/', auth);
 };
