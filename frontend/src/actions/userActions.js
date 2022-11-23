@@ -37,4 +37,4 @@ const signup = (email, password, firstName, lastName) => async (dispatch) => {
     }
 }
 
-export { login, signup };
+export { login, logout, signup };

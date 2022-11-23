@@ -1,5 +1,6 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { logout } from "./actions/userActions";
 import { useSelector } from "react-redux";
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
@@ -7,10 +8,19 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
+import { useEffect } from 'react';
 
 function App() {
 
   const { userInfo } = useSelector(store => store.userLogin);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    logout();
+  }
+
+  useEffect(() => {       
+}, [userInfo]);
   
   return (
     <BrowserRouter>
@@ -20,7 +30,7 @@ function App() {
             <menu>
             <li>{userInfo.first_name}</li>
             <li>Cart</li>
-            <li><Link to="/">Logout</Link></li> 
+            <li onClick={handleClick}>Logout</li> 
             </menu>
             :
             <menu>
