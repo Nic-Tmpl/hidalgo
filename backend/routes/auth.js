@@ -4,32 +4,22 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 const db = require('../db');
 
-const comparePasswords = async(password, hash) => {
-    try {
-        const matchFound = await bcrypt.compare(password, hash);
-        return matchFound;
-    } catch (err) {
-        console.log(err);
-    }
-    return false;
-};
-
-passport.use(new LocalStrategy(async function verify(email, password, cb) {
-    try {
-        const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-        console.log(rows);
-            if(!rows) {
-                return cb(null, false, {message: `Incorrect email or password.`});
-            }
-        let match = await comparePasswords(password, rows[0].password);
-        if (!match) {
-            return cb(null,false, {message: 'Incorrect email or password.'});
+passport.use(new LocalStrategy = async (username, password, done) => {
+        const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [username]);
+        res.send(rows);
+        res.send(rows[0]);
+        if (err) throw err;
+        if(!rows[0].email) {
+            return done(null, false, {message: `Incorrect email or password.`});
         }
-        return cb(null, rows[0]);
-    } catch (e) {
-        return cb(e);
-    }
-    }));
+        let match = await bcrypt.compare(password, rows[0].password);
+        if (err) throw err;
+        if (!match) {
+            return done(null,false, {message: 'Incorrect email or password.'});
+        }
+        const user = rows[0];
+        return cb(null, user);
+    });
 
 passport.serializeUser((user, cb) => {
     process.nextTick(() => {
