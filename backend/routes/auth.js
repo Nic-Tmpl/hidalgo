@@ -6,19 +6,15 @@ const db = require('../db');
 
 passport.use(new LocalStrategy(async(username, password, done) => {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [username]);
-        res.send(rows);
-        res.send(rows[0]);
-        if (err) throw err;
         if(!rows[0].email) {
             return done(null, false, {message: `Incorrect email or password.`});
         }
         let match = await bcrypt.compare(password, rows[0].password);
-        if (err) throw err;
         if (!match) {
             return done(null,false, {message: 'Incorrect email or password.'});
         }
         const user = rows[0];
-        return cb(null, user);
+        return done(null, user);
     }));
 
 passport.serializeUser((user, cb) => {
@@ -38,11 +34,7 @@ const router = new Router();
 //export router for use in routes/index
 module.exports = router;
 
-router.get('/login', (req, res, next) => {
-    res.send("user authenticated.");
-});
-
-router.post('/login/password', passport.authenticate('local', {failureRedirect: '/login', failureMessage: true }), (req, res) => {
+router.post('/login/password', passport.authenticate('local', {failureMessage: true }), (req, res) => {
     res.send(req.user);
 });
 
