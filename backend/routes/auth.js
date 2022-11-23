@@ -6,7 +6,7 @@ const db = require('../db');
 
 passport.use(new LocalStrategy(async(username, password, done) => {
         const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [username]);
-        if(!rows[0].email) {
+        if(!rows[0]) {
             return done(null, false, {message: `Incorrect email or password.`});
         }
         let match = await bcrypt.compare(password, rows[0].password);

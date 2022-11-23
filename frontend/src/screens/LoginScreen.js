@@ -25,10 +25,9 @@ function LoginScreen(props) {
         dispatch(login(email, password));
     }
 
-
+    /* Will need to bild an error message modal - currently errors will either "take over" the screen, or will not be seen. */
     return (
         loading ? <div>loading...</div> :
-        error ? <div>{error}</div> :
         <div className="form-container">
             <div className="form-content">
         <h1>Sign in</h1>
