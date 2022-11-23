@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -8,14 +9,25 @@ import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
 
 function App() {
+
+  const { userInfo } = useSelector(store => store.userLogin);
+  
   return (
     <BrowserRouter>
         <header className="header">
           <div className="logo"><Link to="/">Hidalgo</Link></div>
-          <menu>
+            { userInfo ? 
+            <menu>
+            <li>{userInfo.first_name}</li>
+            <li>Cart</li>
+            <li><Link to="/">Logout</Link></li> 
+            </menu>
+            :
+            <menu>
             <li>Cart</li>
             <li><Link to="/login">Login</Link></li>
-          </menu>
+            </menu>
+            }
         </header>
         <main className="main">
           <div className="content">
