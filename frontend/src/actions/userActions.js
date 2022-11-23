@@ -6,8 +6,7 @@ const login = (email, password) => async (dispatch) => {
     dispatch({type: USER_SIGNIN_REQUEST, payload: {email, password}});
     try {
         //currently not destructuring data as I am uncertain how much info is needed in state.
-        // params is third part of axios post, data is second - and we need params!
-        const data = await axios.post("/login/password", null, { params: { email, password }});
+        const { data } = await axios.post("/login/password", { username: email, password: password });
         dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
     } catch (error) {
        dispatch({ type: USER_SIGNIN_FAIL, payload: error.message }); 
@@ -18,7 +17,7 @@ const signup = (email, password, firstName, lastName) => async (dispatch) => {
     dispatch({type: USER_SIGNUP_REQUEST, payload: {email, password, firstName, lastName}});
     try {
         // not destructuring data here as well, for the same reason.
-        const data = await axios.post("signup", {
+        const { data } = await axios.post("signup", {
             email: email, 
             password: password,
             first_name: firstName,
