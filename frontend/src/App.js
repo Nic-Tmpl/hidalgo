@@ -8,19 +8,12 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
-import { useEffect } from 'react';
 
 function App() {
 
   const { userInfo } = useSelector(store => store.userLogin);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    logout();
-  }
 
-  useEffect(() => {       
-}, [userInfo]);
   
   return (
     <BrowserRouter>
@@ -30,7 +23,7 @@ function App() {
             <menu>
             <li>{userInfo.first_name}</li>
             <li>Cart</li>
-            <li onClick={handleClick}>Logout</li> 
+            <button onClick={logout()}>Logout</button> 
             </menu>
             :
             <menu>

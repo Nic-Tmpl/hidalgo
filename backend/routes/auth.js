@@ -43,6 +43,7 @@ router.post('/logout', (req, res, next) => {
         if (err) { return next(err); }
         res.send('logged out!');
     });
+    res.send('logged out!');
 });
 
 router.post('/signup', async(req, res) => {

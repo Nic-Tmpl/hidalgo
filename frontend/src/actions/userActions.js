@@ -12,10 +12,10 @@ const login = (email, password) => async (dispatch) => {
     }
 }
 
-const logout = () => async (dispatch) => {
+const logout = (email ) => async (dispatch) => {
     dispatch({ type: USER_SIGNOUT_REQUEST });
     try {
-        const { data } = await axios.post("/logout");
+        const { data } = await axios.post("/logout", { username: email });
         dispatch({ type: USER_SIGNOUT_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: USER_SIGNOUT_FAIL, payload: error.message });
