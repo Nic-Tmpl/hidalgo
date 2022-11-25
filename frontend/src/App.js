@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { logout } from "./actions/userActions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -12,6 +12,12 @@ import LandingScreen from './screens/LandingScreen';
 function App() {
 
   const { userInfo } = useSelector(store => store.userLogin);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    console.log(userInfo);
+  }
 
 
   
@@ -23,7 +29,7 @@ function App() {
             <menu>
             <li>{userInfo.first_name}</li>
             <li>Cart</li>
-            <button onClick={logout()}>Logout</button> 
+            <button onClick={handleLogout}>Logout</button> 
             </menu>
             :
             <menu>
