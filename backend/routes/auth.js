@@ -41,9 +41,8 @@ router.post('/login/password', passport.authenticate('local', {failureMessage: t
 router.post('/logout', (req, res, next) => {
     req.logout((err) => {
         if (err) { return next(err); }
-        res.send('logged out!');
     });
-    res.send('logged out!');
+    res.send('');
 });
 
 router.post('/signup', async(req, res) => {
