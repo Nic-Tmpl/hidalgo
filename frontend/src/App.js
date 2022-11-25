@@ -8,7 +8,6 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
-import { useEffect, useState } from 'react';
 
 function App() {
   const { userInfo } = useSelector(store => store.userLogin);
