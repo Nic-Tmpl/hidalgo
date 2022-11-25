@@ -8,11 +8,12 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
+import { useEffect, useState } from 'react';
 
 function App() {
-
   const { userInfo } = useSelector(store => store.userLogin);
   const dispatch = useDispatch();
+
 
   const handleLogout = () => {
     dispatch(logout());
@@ -41,7 +42,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
-              <Route path="/login" element={<LoginScreen />} />
+              <Route path="/login" element={<LoginScreen auth={auth} />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart/:id" element={<CartScreen />} />
