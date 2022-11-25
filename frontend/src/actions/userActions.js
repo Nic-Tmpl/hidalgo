@@ -13,8 +13,8 @@ const login = (email, password) => async (dispatch) => {
 }
 
 const logout = () => async (dispatch) => {
-    const data = await axios.post("/logout");
-    dispatch({ type: USER_SIGNOUT_SUCCESS });
+    const { data } = await axios.post("/logout");
+    dispatch({ type: USER_SIGNOUT_SUCCESS, payload: data });
     
 }
 
