@@ -26,6 +26,10 @@ function AdminProductScreen(props) {
     categories = getCategories();
   }, [])
 
+  const submitHandler = () => {
+    console.log("Submitted!");
+  }
+
     return (
       loading ? <div>loading...</div> :
       error ? <div>{error}</div> :
