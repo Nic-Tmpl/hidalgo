@@ -76,8 +76,8 @@ function AdminProductScreen(props) {
                 <section>
                     <label htmlFor="category">Category: </label>
                     <select id="category" name="category" onChange={(e) => setCategory(e.target.value)}>
-                        {categories.map(category =>
-                            <option value={category.id}>{category.name}</option>
+                        {categories.map(cat =>
+                            <option value={cat.id}>{cat.name}</option>
                         )}
                     </select>
                 </section>
