@@ -8,7 +8,7 @@ module.exports = router;
 
 router.get('/', async(req, res) => {
     const { rows } = await db.query(`SELECT p.*, c.name as category 
-                                    FROM "products" p JOIN "categories" c ON p.cateogry = c.id`);
+                                    FROM "products" p JOIN "categories" c ON p.category = c.id`);
     res.send(rows);
 });
 
