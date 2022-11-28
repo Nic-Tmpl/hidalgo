@@ -7,7 +7,8 @@ const router = new Router();
 module.exports = router;
 
 router.get('/', async(req, res) => {
-    const { rows } = await db.query('SELECT * FROM products');
+    const { rows } = await db.query(`SELECT p.*, c.name as category 
+                                    FROM "products" p JOIN "categories" c ON p.cateogry = c.id`);
     res.send(rows);
 });
 
@@ -18,7 +19,7 @@ router.get('/categories', async(req, res) => {
 
 router.get('/categories/:category', async(req, res) => {
     const { category } = req.params;
-    const { rows } = await db.query(`SELECT c.id, c.name AS category, p.name 
+    const { rows } = await db.query(`SELECT c.id, c.name AS category, p.* 
                                     FROM "categories" c JOIN "products" p ON c.id = p.category 
                                     WHERE c.id = $1`, [category]);
     res.send(rows);
