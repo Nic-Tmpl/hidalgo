@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import { getCategories, listProducts } from '../actions/productActions';
 
 function AdminProductScreen(props) {
 
@@ -17,11 +17,13 @@ function AdminProductScreen(props) {
 
 
   const productList = useSelector(store => store.productList);
+  var categories = [];
   const { products, loading, error} = productList;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listProducts());
+    categories = getCategories();
   }, [])
 
     return (
@@ -69,11 +71,15 @@ function AdminProductScreen(props) {
                 </section>
                 <section>
                     <label htmlFor="price">Price: </label>
-                    <input id="price" name="price" type="text" value={price} onChange={(e) => setFirstName(e.target.value)} />
+                    <input id="price" name="price" type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                 </section>
                 <section>
                     <label htmlFor="category">Category: </label>
-                    <input id="category" name="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <select id="category" name="category" onChange={(e) => setCategory(e.target.value)}>
+                        {categories.map(category =>
+                            <option value={category.id}>{category.name}</option>
+                        )}
+                    </select>
                 </section>
                 <section>
                     <label htmlFor="description">Description: </label>

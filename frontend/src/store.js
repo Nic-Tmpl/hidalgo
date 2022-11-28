@@ -1,6 +1,6 @@
 import { configureStore  } from '@reduxjs/toolkit';
 import { cartReducer } from './reducers/cartReducers';
-import { categoriesReducer, productDetailsReducer, productListReducer } from './reducers/productReducers';
+import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import { userLoginReducer, userSignupReducer } from './reducers/userReducers';
 
 const reducer = {
@@ -9,7 +9,6 @@ const reducer = {
     cart: cartReducer,
     userLogin: userLoginReducer,
     userSignup: userSignupReducer,
-    categories: categoriesReducer
 }
 
 const store = configureStore({
