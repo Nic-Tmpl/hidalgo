@@ -8,6 +8,7 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import LandingScreen from './screens/LandingScreen';
+import AdminProductScreen from './screens/AdminProductScreen';
 
 function App() {
   const { userInfo } = useSelector(store => store.userLogin);
@@ -27,7 +28,10 @@ function App() {
           <div className="logo"><Link to="/">Hidalgo</Link></div>
             { userInfo ? 
             <menu>
-            <li>{userInfo.first_name}</li>
+              {userInfo.isadmin ?
+              <li><Link to = "/adminpage">{userInfo.first_name}</Link></li>:
+              <li>{userInfo.first_name}</li>
+            }
             <li>Cart</li>
             <button onClick={handleLogout}>Logout</button> 
             </menu>
@@ -41,6 +45,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
+              <Route path ="adminpage" element={<AdminProductScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
