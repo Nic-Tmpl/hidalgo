@@ -7,7 +7,15 @@ import { listProducts } from '../actions/productActions';
 function AdminProductScreen(props) {
 
   const [modal, setModal] = useState(false);
-  
+
+  //product creation state controls
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
+  const [price, setPrice] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState('');
+
+
   const productList = useSelector(store => store.productList);
   const { products, loading, error} = productList;
   const dispatch = useDispatch();
@@ -50,7 +58,29 @@ function AdminProductScreen(props) {
                 </tbody>
             </table>
         </div>
-
+        <form onSubmit={submitHandler}>
+                <section>
+                    <label htmlFor="name">Name: </label>
+                    <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                </section>
+                <section>
+                    <label htmlFor="image">Image Path: </label>
+                    <input id="image" name="image" type="text" value={image} onChange={(e) => setImage(e.target.value)}/>
+                </section>
+                <section>
+                    <label htmlFor="price">Price: </label>
+                    <input id="price" name="price" type="text" value={price} onChange={(e) => setFirstName(e.target.value)} />
+                </section>
+                <section>
+                    <label htmlFor="category">Category: </label>
+                    <input id="category" name="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
+                </section>
+                <section>
+                    <label htmlFor="description">Description: </label>
+                    <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                </section>
+                <button type="submit">Sign up</button>
+            </form>
       </div>
       )
 }
