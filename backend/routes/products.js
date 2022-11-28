@@ -13,7 +13,7 @@ router.get('/', async(req, res) => {
 });
 
 router.get('/categories', async(req, res) => {
-    const { rows } = await db.query('SELECT name FROM categories');
+    const { rows } = await db.query('SELECT * FROM categories');
     res.send(rows);
 });
 
