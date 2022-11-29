@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
 
 
-function LoginScreen(props) {
+function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const userLogin = useSelector(store => store.userLogin);

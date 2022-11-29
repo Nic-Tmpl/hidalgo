@@ -14,8 +14,7 @@ const login = (email, password) => async (dispatch) => {
 
 const logout = () => async (dispatch) => {
     const { data } = await axios.post("/logout");
-    dispatch({ type: USER_SIGNOUT_SUCCESS, payload: data });
-    
+       dispatch({ type: USER_SIGNOUT_SUCCESS, payload: data });    
 }
 
 const signup = (email, password, firstName, lastName) => async (dispatch) => {

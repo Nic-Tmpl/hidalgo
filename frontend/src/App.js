@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link, redirect } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { logout } from "./actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import HomeScreen from './screens/HomeScreen';
@@ -13,26 +13,26 @@ import AdminProductScreen from './screens/AdminProductScreen';
 function App() {
   const { userInfo } = useSelector(store => store.userLogin);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
 
   const handleLogout = () => {
     dispatch(logout());
-    console.log(userInfo);
-    // react router docs says to use redirect instead of UseNavigate in response to data whoops lololol 
-    return redirect("/");
+    console.log(userInfo); 
+    navigate("/");
   }
 
 
   
   return (
-    <BrowserRouter>
+      <body>
         <header className="header">
           <div className="logo"><Link to="/">Hidalgo</Link></div>
             { userInfo ? 
             <menu>
               {userInfo.isadmin ?
-              <li><Link to = "/adminpage">{userInfo.first_name}</Link></li>:
+              <li><Link to="/adminpage">{userInfo.first_name}</Link></li>:
               <li>{userInfo.first_name}</li>
             }
             <li>Cart</li>
@@ -48,7 +48,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Routes>
-              <Route path ="adminpage" element={<AdminProductScreen />} />
+              <Route path ="/adminpage" element={<AdminProductScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
@@ -59,7 +59,7 @@ function App() {
           </div>
       </main>
       <footer className="footer">All Rights Reserved.</footer>
-    </BrowserRouter>
+  </body>
   );
 }
 
