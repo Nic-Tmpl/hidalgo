@@ -15,7 +15,7 @@ function LoginScreen(props) {
 
     useEffect(() => {
         if (userInfo) {
-           navigate('/');
+           navigate(-1);
         }
     }, [userInfo]);
 
