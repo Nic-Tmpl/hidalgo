@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, redirect } from "react-router-dom";
 import { logout } from "./actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import HomeScreen from './screens/HomeScreen';
@@ -15,9 +15,12 @@ function App() {
   const dispatch = useDispatch();
 
 
+
   const handleLogout = () => {
     dispatch(logout());
     console.log(userInfo);
+    // react router docs says to use redirect instead of UseNavigate in response to data whoops lololol 
+    return redirect("/");
   }
 
 
