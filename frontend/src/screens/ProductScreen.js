@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
 
 
-function ProductScreen(props) {
+function ProductScreen() {
 
    const [qty, setQty] = useState(1); //uses state to manage quantity of items selected for cart
 

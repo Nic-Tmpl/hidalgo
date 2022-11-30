@@ -6,7 +6,7 @@ import { login, signup } from '../actions/userActions';
 
 
 
-function SignupScreen(props) {
+function SignupScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');

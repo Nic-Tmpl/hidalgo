@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { logout } from "./actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
-import HomeScreen from './screens/HomeScreen';
+import AllProductsScreen from './screens/AllProductsScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -53,7 +53,7 @@ function App() {
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart/:id" element={<CartScreen />} />
-              <Route path="/products" element={<HomeScreen />} />
+              <Route path="/products" element={<AllProductsScreen />} />
               <Route path="/" element={<LandingScreen />} />
             </Routes>
           </div>

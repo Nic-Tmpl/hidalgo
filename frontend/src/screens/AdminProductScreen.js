@@ -4,7 +4,7 @@ import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories, listProducts } from '../actions/productActions';
 
-function AdminProductScreen(props) {
+function AdminProductScreen() {
 
   const [modal, setModal] = useState(false);
 

@@ -4,7 +4,7 @@ import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 
-function HomeScreen(props) {
+function AllProductsScreen() {
 
   const productList = useSelector(store => store.productList);
   const { products, loading, error} = productList;
@@ -30,4 +30,4 @@ function HomeScreen(props) {
       </ul>)
 }
 
-export default HomeScreen;
+export default AllProductsScreen;
