@@ -98,7 +98,11 @@ function AdminProductScreen() {
                 </section>
                 <section>
                     <label htmlFor="category">Category: </label>
-                    {console.log(categories)}
+                    <select name="categories" id="categories">
+                        {categories.map(cat =>
+                            <option value={cat.id}>{cat.name}</option>
+                        )}
+                    </select>
                 </section>
                 <section>
                     <label htmlFor="description">Description: </label>
