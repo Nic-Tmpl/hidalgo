@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, listProducts } from '../actions/productActions';
+import { listProducts } from '../actions/productActions';
+import axios from 'axios';
 
 function AdminProductScreen() {
 
@@ -14,20 +14,26 @@ function AdminProductScreen() {
   const [price, setPrice] = useState();
   const [category, setCategory] = useState();
   const [description, setDescription] = useState('');
+  const [categories, setCategories] = useState([]);
 
 
   const productList = useSelector(store => store.productList);
-  var categories;
   const { products, loading, error} = productList;
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect( () => {
     dispatch(listProducts());
+    /* originally this was in product actions, but for some reason would return a Promise{<fulfilled> :data } format. This is messier 
+    but works as intended, for reasons unknown. */
+    const getCategories = async () => {
+        const { data }  =  await axios.get("/products/categories");
+        setCategories(data);
+    };
+    getCategories();
   }, [])
 
-  const openModal = async (product) => {
+  const openModal = (product) => {
     setModal(true);
-    categories = await getCategories();
     //setId(product.id); -- not certain id will be necessary to display, as it should be immutable
     setName(product.name);
     setImage(product.image);
@@ -48,7 +54,7 @@ function AdminProductScreen() {
       <div className="content-box">
             <div className="product-header">
                 <h3>Products</h3>
-                <button onCLick={() => openModal({})}>Create Product</button>
+                <button onClick={() => openModal({})}>Create Product</button>
             </div>
         <div className="product-list">
         
@@ -64,7 +70,7 @@ function AdminProductScreen() {
                 </thead>
                 <tbody>
                    {products.map(product => (<tr>
-                        <td>{product.id}</td>
+                        <td key={product.id}>{product.id}</td>
                         <td>{product.name}</td>
                         <td>{product.price}</td>
                         <td>{product.category}</td>

@@ -24,8 +24,4 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
-const getCategories = async () => {
-        const { data } = await axios.get("/products/categories");
-        return data;
-}
-export { listProducts, detailsProduct, getCategories };
+export { listProducts, detailsProduct };

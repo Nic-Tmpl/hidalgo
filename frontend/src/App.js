@@ -26,7 +26,7 @@ function App() {
 
   
   return (
-      <body>
+      <div className="body">
         <header className="header">
           <div className="logo"><Link to="/">Hidalgo</Link></div>
             { userInfo ? 
@@ -59,7 +59,7 @@ function App() {
           </div>
       </main>
       <footer className="footer">All Rights Reserved.</footer>
-  </body>
+  </div>
   );
 }
 
