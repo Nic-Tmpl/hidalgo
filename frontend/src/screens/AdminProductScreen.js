@@ -17,16 +17,17 @@ function AdminProductScreen() {
 
 
   const productList = useSelector(store => store.productList);
-  var categories = [];
+  var categories;
   const { products, loading, error} = productList;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listProducts());
-    categories = getCategories();
   }, [])
 
-  const openModal = (product) => {
+  const openModal = async (product) => {
+    setModal(true);
+    categories = await getCategories();
     //setId(product.id); -- not certain id will be necessary to display, as it should be immutable
     setName(product.name);
     setImage(product.image);
@@ -40,7 +41,6 @@ function AdminProductScreen() {
     console.log("Submitted!");
   }
 
-  /* check to see if onClick needs to be {() => funcName()} or if {funcName()} is ok*/
 
     return (
       loading ? <div>loading...</div> :
@@ -48,7 +48,7 @@ function AdminProductScreen() {
       <div className="content-box">
             <div className="product-header">
                 <h3>Products</h3>
-                <button onCLick={openModal({})}>Create Product</button>
+                <button onCLick={() => openModal({})}>Create Product</button>
             </div>
         <div className="product-list">
         
@@ -69,7 +69,7 @@ function AdminProductScreen() {
                         <td>{product.price}</td>
                         <td>{product.category}</td>
                         <td>
-                            <button onClick={openModal(product)}>Edit</button> 
+                            <button onClick={() => openModal(product)}>Edit</button> 
                             <button>Delete</button>
                         </td>
                     </tr>))}
@@ -92,11 +92,7 @@ function AdminProductScreen() {
                 </section>
                 <section>
                     <label htmlFor="category">Category: </label>
-                    <select id="category" name="category" onChange={(e) => setCategory(e.target.value)}>
-                        {categories.map(cat =>
-                            <option value={cat.id}>{cat.name}</option>
-                        )}
-                    </select>
+                    {console.log(categories)}
                 </section>
                 <section>
                     <label htmlFor="description">Description: </label>
