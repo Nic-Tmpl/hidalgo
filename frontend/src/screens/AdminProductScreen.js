@@ -26,9 +26,21 @@ function AdminProductScreen() {
     categories = getCategories();
   }, [])
 
+  const openModal = (product) => {
+    //setId(product.id); -- not certain id will be necessary to display, as it should be immutable
+    setName(product.name);
+    setImage(product.image);
+    setPrice(product.price);
+    setCategory(product.category);
+    setDescription(product.description);
+    
+  }
+
   const submitHandler = () => {
     console.log("Submitted!");
   }
+
+  /* check to see if onClick needs to be {() => funcName()} or if {funcName()} is ok*/
 
     return (
       loading ? <div>loading...</div> :
@@ -36,7 +48,7 @@ function AdminProductScreen() {
       <div className="content-box">
             <div className="product-header">
                 <h3>Products</h3>
-                <button>Create Product</button>
+                <button onCLick={openModal({})}>Create Product</button>
             </div>
         <div className="product-list">
         
@@ -57,13 +69,14 @@ function AdminProductScreen() {
                         <td>{product.price}</td>
                         <td>{product.category}</td>
                         <td>
-                            <button>Edit</button>
+                            <button onClick={openModal(product)}>Edit</button> 
                             <button>Delete</button>
                         </td>
                     </tr>))}
                 </tbody>
             </table>
         </div>
+        { modal &&
         <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="name">Name: </label>
@@ -91,6 +104,7 @@ function AdminProductScreen() {
                 </section>
                 <button type="submit">Sign up</button>
             </form>
+        }
       </div>
       )
 }
