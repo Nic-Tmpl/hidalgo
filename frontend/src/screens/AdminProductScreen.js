@@ -9,6 +9,7 @@ function AdminProductScreen() {
   const [modal, setModal] = useState(false);
 
   //product creation state controls
+  const [id, setId] = useState();
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState();
@@ -34,7 +35,7 @@ function AdminProductScreen() {
 
   const openModal = (product) => {
     setModal(true);
-    //setId(product.id); -- not certain id will be necessary to display, as it should be immutable
+    setId(product.id);
     setName(product.name);
     setImage(product.image);
     setPrice(product.price);
@@ -56,6 +57,39 @@ function AdminProductScreen() {
                 <h3>Products</h3>
                 <button onClick={() => openModal({})}>Create Product</button>
             </div>
+            { modal &&
+            <div className="product-form">
+                <h1>{id ? "Edit" : "Create"} Product</h1>
+                <form onSubmit={submitHandler}>
+                    <section>
+                        <label htmlFor="name">Name: </label>
+                        <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                    </section>
+                    <section>
+                        <label htmlFor="image">Image Path: </label>
+                        <input id="image" name="image" type="text" value={image} onChange={(e) => setImage(e.target.value)}/>
+                    </section>
+                    <section>
+                        <label htmlFor="price">Price: </label>
+                        <input id="price" name="price" type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </section>
+                    <section>
+                        <label htmlFor="category">Category: </label>
+                        <select name="categories" id="categories">
+                            {categories.map(cat =>
+                                <option value={cat.id}>{cat.name}</option>
+                            )}
+                        </select>
+                    </section>
+                    <section>
+                        <label htmlFor="description">Description: </label>
+                        <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </section>
+                    <button type="submit">{ id ? 'Update' : 'Create'}</button>
+                    <button type="button" onClick={() => setModal(false)}>Cancel</button>
+                </form>
+            </div>
+            }
         <div className="product-list">
         
             <table>
@@ -82,35 +116,6 @@ function AdminProductScreen() {
                 </tbody>
             </table>
         </div>
-        { modal &&
-        <form onSubmit={submitHandler}>
-                <section>
-                    <label htmlFor="name">Name: </label>
-                    <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                </section>
-                <section>
-                    <label htmlFor="image">Image Path: </label>
-                    <input id="image" name="image" type="text" value={image} onChange={(e) => setImage(e.target.value)}/>
-                </section>
-                <section>
-                    <label htmlFor="price">Price: </label>
-                    <input id="price" name="price" type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
-                </section>
-                <section>
-                    <label htmlFor="category">Category: </label>
-                    <select name="categories" id="categories">
-                        {categories.map(cat =>
-                            <option value={cat.id}>{cat.name}</option>
-                        )}
-                    </select>
-                </section>
-                <section>
-                    <label htmlFor="description">Description: </label>
-                    <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                </section>
-                <button type="submit">Sign up</button>
-            </form>
-        }
       </div>
       )
 }
