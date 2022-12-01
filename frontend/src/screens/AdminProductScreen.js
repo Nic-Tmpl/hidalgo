@@ -24,8 +24,8 @@ function AdminProductScreen() {
 
   useEffect( () => {
     dispatch(listProducts());
-    /* originally this was in product actions, but for some reason would return a Promise{<fulfilled> :data } format. This is messier 
-    but works as intended, for reasons unknown. */
+    /* originally this was in product actions, but for some reason would return a Promise{<fulfilled> :data } format.
+     This is messier but works as intended, for reasons unknown. */
     const getCategories = async () => {
         const { data }  =  await axios.get("/products/categories");
         setCategories(data);
@@ -57,7 +57,7 @@ function AdminProductScreen() {
                 <h3>Products</h3>
                 <button onClick={() => openModal({})}>Create Product</button>
             </div>
-            { modal &&
+            { modal ?
             <div className="product-form">
                 <h1>{id ? "Edit" : "Create"} Product</h1>
                 <form onSubmit={submitHandler}>
@@ -89,7 +89,7 @@ function AdminProductScreen() {
                     <button type="button" onClick={() => setModal(false)}>Cancel</button>
                 </form>
             </div>
-            }
+            :
         <div className="product-list">
         
             <table>
@@ -116,6 +116,7 @@ function AdminProductScreen() {
                 </tbody>
             </table>
         </div>
+        }
       </div>
       )
 }
