@@ -1,52 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from '../actions/productActions';
+import { listProducts } from '../actions/productActions';
 
 
 function CategoryProductScreen() {
 
-   const [qty, setQty] = useState(1); //uses state to manage quantity of items selected for cart
 
    const { id } = useParams(); //useParams returns an object with string values
-   const navigate = useNavigate(); 
 
-   const productDetails = useSelector(store => store.productDetails);
-   const { product, loading, error } = productDetails;
+   const productList = useSelector(store => store.productList);
+   const { products, loading, error} = productList;
    const dispatch = useDispatch();
-
    useEffect(() => {
-    dispatch(detailsProduct(id));   
+     dispatch(listProducts(id));
    }, [])
-
-const handleAddToCart = (e) => {
-    e.preventDefault();
-    navigate(`/cart/${id}?quantity=${qty}`);
-}
-    return (
-        loading ? <div>loading...</div> :
-        error ? <div>{error}</div> :
-        <div className="product-details">
-            <div className="details-image">
-                <img src={product.image} alt={product.name} />
-            </div>
-            <div className="details-info">
-                <h1>{product.name}</h1>
-                <h3>${product.price}</h3>
-                <p>{product.rating} ({product.numReviews} Reviews)</p>
-            </div>
-            <div className="details-order">
-                <p>Price: ${product.price}</p>
-                <form id="quantity-form" onSubmit={handleAddToCart}>
-                    <label htmlFor="quantity">Qty: </label>
-                    <input id="quantity" type="number" name="quantity" min="0" value={qty} onChange={(e) => setQty(e.target.value)}/><br/>
-                </form>
-                <button type="submit" form="quantity-form">Add to Cart</button>
-
-            </div>
-        </div>
-    );
-};
+     return (
+       loading ? <div>loading...</div> :
+       error ? <div>{error}</div> :
+         <ul className="product">
+         {
+           products.map(product =>
+             <li key={product.id}>
+               <img className="product-image" src={product.image} alt = "product" />
+               <div className="product-name">
+                 <Link to={`/products/${product.id}`}>{product.name}</Link>
+               </div>
+               <div className="product-price">${product.price}</div>
+               <div className="product-rating">{product.rating} Stars ({product.numreviews} Reviews)</div>
+             </li>)
+        }
+       </ul>)
+ }
+ 
 
 export default CategoryProductScreen;
