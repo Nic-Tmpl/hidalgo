@@ -26,8 +26,8 @@ function LandingScreen() {
             <p>You ever get hungry? We get hungry all the time. You ever look at some guy, wearing some nice shirt or a fine pair
                 of chinos, and you want one for yourself? It would be too weird to ask a strange man about his clothing. We know. But here
                 at Hidalgo, we'll load you up with food and if you spot some shirt you like, we'll rip it right off the guy and give it to
-                you. For a price. No questions asked. That's the Hidalgo guarantee. So, is it <Link to='/products/categories/0'>shirts</Link> you're 
-                looking for? <Link to="/products/categories/1">Pants</Link>? Or just <Link to="/products/categories/2">food</Link>?
+                you. For a price. No questions asked. That's the Hidalgo guarantee. So, is it <Link to='/products/categories/1'>shirts</Link> you're 
+                looking for? <Link to="/products/categories/2">Pants</Link>? Or just <Link to="/products/categories/3">food</Link>?
             </p>
         </div>
         <div className="productBackground">
