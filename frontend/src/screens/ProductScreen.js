@@ -10,7 +10,7 @@ function ProductScreen() {
    const [qty, setQty] = useState(1); //uses state to manage quantity of items selected for cart
 
    const { id } = useParams(); //useParams returns an object with string values
-   const navigate = useNavigate(); // use navigate is a react-router function to push user to a new page
+   const navigate = useNavigate(); 
 
    const productDetails = useSelector(store => store.productDetails);
    const { product, loading, error } = productDetails;
