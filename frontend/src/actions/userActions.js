@@ -18,7 +18,7 @@ const logout = () => async (dispatch) => {
 }
 
 const userEdit = (id, email, password, firstName, lastName) => async (dispatch) => {
-    dispatch ({ type: USER_EDIT_SUCCESS, payload: {email, password, firstName, lastName} });
+    dispatch ({ type: USER_EDIT_SUCCESS, payload: { id, email, password, firstName, lastName} });
     try {
         const { data } = await axios.put(`/users/${id}`, {
             email: email,
