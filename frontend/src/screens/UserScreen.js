@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { userEdit } from '../actions/userActions';
 
 /* TODO: create an action for user edits, possibly folding in the same userInfo useSelector calls as signup
 and login. JSX will need default values and state will need to be set with userInfo. You should have info displayed, with
@@ -27,12 +28,11 @@ function UserScreen() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-      if (userInfo) {
-          dispatch(login(email, password));
-          navigate('/');
-      }
+  useEffect((id) => {
+    
+
   })
+
 
   const openModal = () => {
     setModal(true);
@@ -40,7 +40,7 @@ function UserScreen() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch((email, password, firstName, lastName));
+    dispatch(userEdit(email, password, firstName, lastName));
 }
 
 
