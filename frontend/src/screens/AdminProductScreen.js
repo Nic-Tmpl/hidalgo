@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import { deleteProduct, listProducts } from '../actions/productActions';
 import axios from 'axios';
 
 function AdminProductScreen() {
@@ -75,9 +75,8 @@ function AdminProductScreen() {
   };
 
 const deleteHandler = (product) => {
-    dispatch()
-}
-
+    dispatch(deleteProduct(product.id));
+};
 
     return (
       loading ? <div>loading...</div> :
