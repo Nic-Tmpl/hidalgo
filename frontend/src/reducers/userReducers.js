@@ -1,4 +1,4 @@
-import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS } from "../constants/userConstants";
+import { USER_EDIT_FAIL, USER_EDIT_REQUEST, USER_EDIT_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS } from "../constants/userConstants";
 
 
 const userLoginReducer = (state={}, action) => {
@@ -16,6 +16,18 @@ const userLoginReducer = (state={}, action) => {
     }
 }
 
+const userEditReducer = (state={}, action) => {
+    switch(action.type) {
+        case USER_EDIT_REQUEST:
+            return { loading: true };
+        case USER_EDIT_SUCCESS:
+            return { loading: false, userInfo: action.payload};
+        case USER_EDIT_FAIL:
+            return { loading:false, error: action.payload };
+        default: return state;
+    }
+}
+
 const userSignupReducer = (state={}, action) => {
     switch (action.type) {
         case USER_SIGNUP_REQUEST:
@@ -28,4 +40,4 @@ const userSignupReducer = (state={}, action) => {
     }
 }
 
-export { userLoginReducer, userSignupReducer };
+export { userLoginReducer, userEditReducer, userSignupReducer };

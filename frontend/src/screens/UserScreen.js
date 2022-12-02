@@ -16,20 +16,16 @@ function UserScreen() {
   const [modal, setModal] = useState(false);
 
   //editing state controls
-  const [id, setId] = useState();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const userdetails = useSelector(store => store.userLogin);
   const { loading, userInfo, error} = userdetails;
+  const [id, setId] = useState(userInfo.id);
+  const [email, setEmail] = useState(userInfo.email);
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState(userInfo.first_name);
+  const [lastName, setLastName] = useState(userInfo.last_name);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const submitHandler = (e) => {
-      e.preventDefault();
-      dispatch((email, password, firstName, lastName));
-  }
 
   useEffect(() => {
       if (userInfo) {
@@ -38,34 +34,53 @@ function UserScreen() {
       }
   })
 
+  const openModal = () => {
+    setModal(true);
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch((email, password, firstName, lastName));
+}
+
+
 
 
   return (
       loading ? <div>loading...</div> :
       error ? <div>{error}</div> :
       <div className="form-container">
-          <div className="form-content">
-          <h1>Sign up</h1>
-          <form onSubmit={submitHandler}>
-              <section>
-                  <label htmlFor="email">Email: </label>
-                  <input id="email" name="email" type="email" autoComplete="email" required onChange={(e) => setEmail(e.target.value)} />
-              </section>
-              <section>
-                  <label htmlFor="password">Password: </label>
-                  <input id="password" name="password" type="password" autoComplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
-              </section>
-              <section>
-                  <label htmlFor="firstName">First Name: </label>
-                  <input id="firstName" name="firstName" type="text" autoComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
-              </section>
-              <section>
-                  <label htmlFor="lastName">Last Name: </label>
-                  <input id="lastName" name="lastName" type="text" autoComplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
-              </section>
-              <button type="submit">Sign up</button>
-          </form>
+          <div className="account-info">
+            <h1>Account Information</h1>
+            <h3>Email:</h3>
+            <p>{userInfo.email}</p>
+            <h3>First Name:</h3>
+            <p>{userInfo.first_name}</p>
+            <h3>Last Name:</h3>
+            <p>{userInfo.last_name}</p>          
+            <button onClick={() => openModal()}>Edit Details/Change Password</button>
       </div>
+      { modal && 
+            <form onSubmit={submitHandler}>
+                <section>
+                    <label htmlFor="email">Email: </label>
+                    <input id="email" name="email" type="email" autoComplete="email" required onChange={(e) => setEmail(e.target.value)} />
+                </section>
+                <section>
+                    <label htmlFor="password">Password: </label>
+                    <input id="password" name="password" type="password" autoComplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
+                </section>
+                <section>
+                    <label htmlFor="firstName">First Name: </label>
+                    <input id="firstName" name="firstName" type="text" autoComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
+                </section>
+                <section>
+                    <label htmlFor="lastName">Last Name: </label>
+                    <input id="lastName" name="lastName" type="text" autoComplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
+                </section>
+                <button type="submit">Sign up</button>
+            </form>
+         }
   </div>
   )
 };

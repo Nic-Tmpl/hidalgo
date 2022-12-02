@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS } from '../constants/userConstants';
+import { USER_EDIT_FAIL, USER_EDIT_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT_SUCCESS, USER_SIGNUP_FAIL, USER_SIGNUP_REQUEST, USER_SIGNUP_SUCCESS } from '../constants/userConstants';
 
 
 const login = (email, password) => async (dispatch) => {
@@ -17,6 +17,21 @@ const logout = () => async (dispatch) => {
        dispatch({ type: USER_SIGNOUT_SUCCESS, payload: data });    
 }
 
+const userEdit = (id, email, password, firstName, lastName) => async (dispatch) => {
+    dispatch ({ type: USER_EDIT_SUCCESS, payload: {email, password, firstName, lastName} });
+    try {
+        const { data } = await axios.put(`/users/${id}`, {
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+        });
+        dispatch({type: USER_EDIT_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: USER_EDIT_FAIL, payload: error.message });
+    }
+}
+
 const signup = (email, password, firstName, lastName) => async (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUEST, payload: {email, password, firstName, lastName} });
     try {
@@ -32,4 +47,4 @@ const signup = (email, password, firstName, lastName) => async (dispatch) => {
     }
 }
 
-export { login, logout, signup };
+export { login, logout, userEdit, signup };
