@@ -34,7 +34,7 @@ function UserScreen() {
         const { data }  =  await axios.get("/orders/", {
             user_id: id,
         });
-        getOrders(data);
+        setOrders(data);
     };
     getOrders();
   }, [])
@@ -57,7 +57,7 @@ function UserScreen() {
       loading ? <div>loading...</div> :
       error ? <div>{error}</div> :
       <div className="form-container">
-          <div className="account-info">
+        <div className="account-info">
             <h1>Account Information</h1>
             <h3>Email:</h3>
             <p>{userInfo.email}</p>
@@ -66,8 +66,8 @@ function UserScreen() {
             <h3>Last Name:</h3>
             <p>{userInfo.last_name}</p>          
             <button onClick={() => openModal()}>Edit Details/Change Password</button>
-      </div>
-      { modal && 
+        </div>
+      { modal ?
             <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="email">Email: </label>
@@ -87,9 +87,23 @@ function UserScreen() {
                 </section>
                 <button type="submit">Sign up</button>
             </form>
-         }
-  </div>
-  )
+         :
+         <div className="orders">
+            <h1>Order History</h1>
+            {orders.length > 0 ? 
+            orders.map(order => 
+                <div className="order-info">
+                    <p>{order.created}</p>
+                    <p>{order.status}</p>
+                    <p>{order.total}</p>
+                </div>)
+            :
+            <div>No Order History</div>
+            }  
+        </div> 
+    }
+    </div>
+    );
 };
 
 export default UserScreen;
