@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL } from "../constants/productConstants"
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL } from "../constants/productConstants"
 import axios from 'axios';
 
 const listProducts = (category) =>  async (dispatch) => {
@@ -31,8 +31,17 @@ const saveProduct = (product) => async (dispatch) => {
     } catch(error) {
         dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message});
 
+    }   
+}
+
+const deleteProduct = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_DELETE_REQUEST, payload: id});
+        const { data } = await axios.delete(`/products/${id}`);
+        dispatch ({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true});
+    } catch(error) {
+        dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message});
     }
-    
 }
 
 const detailsProduct = (productId) => async (dispatch) => {
@@ -46,4 +55,4 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
-export { listProducts, saveProduct, detailsProduct };
+export { listProducts, saveProduct, deleteProduct, detailsProduct };

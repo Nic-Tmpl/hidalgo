@@ -61,7 +61,7 @@ function AdminProductScreen() {
     
   }
 
-  const submitHandler = (e) => {
+  const saveProductHandler = (e) => {
     e.preventDefault();
     dispatch(saveProduct({
         id: id,
@@ -73,6 +73,10 @@ function AdminProductScreen() {
     })
     );
   };
+
+const deleteHandler = (product) => {
+    dispatch()
+}
 
 
     return (
@@ -86,7 +90,11 @@ function AdminProductScreen() {
             { modal ?
             <div className="product-form">
                 <h1>{id ? "Edit" : "Create"} Product</h1>
-                <form onSubmit={submitHandler}>
+                <form onSubmit={saveProductHandler}>
+                    <section>
+                        {loadingSave && <div>Loading...</div>}
+                        {errorSave && <div>{errorSave}</div>}
+                    </section>
                     <section>
                         <label htmlFor="name">Name: </label>
                         <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -135,8 +143,8 @@ function AdminProductScreen() {
                         <td>{product.price}</td>
                         <td>{product.category}</td>
                         <td>
-                            <button onClick={() => openModal(product)}>Edit</button> 
-                            <button>Delete</button>
+                            <button className="button" onClick={() => openModal(product)}>Edit</button> 
+                            <button className="button" onClick={() => deleteHandler(product)}>Delete</button>
                         </td>
                     </tr>))}
                 </tbody>
