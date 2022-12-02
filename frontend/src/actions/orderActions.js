@@ -4,7 +4,7 @@ import axios from 'axios';
 const listOrders = (userId) =>  async (dispatch) => {
     try{
         dispatch({ type: ORDER_HISTORY_REQUEST, payload: userId}); 
-        const { data } = await axios.get(`/orders`, userId);
+        const { data } = await axios.get(`/orders`, { id: userId });
         dispatch({ type: ORDER_HISTORY_SUCCESS, payload: data });
     }
     catch(error) {

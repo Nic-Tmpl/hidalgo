@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userEdit } from '../actions/userActions';
+import { listOrders } from '../actions/orderActions';
 
 /* TODO: create an action for user edits, possibly folding in the same userInfo useSelector calls as signup
 and login. JSX will need default values and state will need to be set with userInfo. You should have info displayed, with
@@ -13,12 +14,17 @@ in the api. These both require putting the userid in the request body */
 
 function UserScreen() {
 
-  const [orders, setOrders] = useState([]);
   const [modal, setModal] = useState(false);
 
   //editing state controls
   const userdetails = useSelector(store => store.userLogin);
   const { loading, userInfo, error} = userdetails;
+
+  const orderList = useSelector(store => store.orderList);
+  const { 
+    loading: orderLoading,
+    orders: orders,
+    error: orderError } = orderList;
   const [id, setId] = useState(userInfo.id);
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState('');
@@ -29,14 +35,7 @@ function UserScreen() {
   const navigate = useNavigate();
 
   useEffect( () => {
-    /* handled in effect call so data is returned instead of a promise object. */
-    const getOrders = async (id = userInfo.id) => {
-        const { data }  =  await axios.get("/orders/", {
-            user_id: id,
-        });
-        setOrders(data);
-    };
-    getOrders();
+    dispatch(listOrders(id));
   }, [])
 
 
@@ -71,19 +70,19 @@ function UserScreen() {
             <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="email">Email: </label>
-                    <input id="email" name="email" type="email" autoComplete="email" required onChange={(e) => setEmail(e.target.value)} />
+                    <input id="email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </section>
                 <section>
                     <label htmlFor="password">Password: </label>
-                    <input id="password" name="password" type="password" autoComplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
+                    <input id="password" name="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                 </section>
                 <section>
                     <label htmlFor="firstName">First Name: </label>
-                    <input id="firstName" name="firstName" type="text" autoComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
+                    <input id="firstName" name="firstName" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                 </section>
                 <section>
                     <label htmlFor="lastName">Last Name: </label>
-                    <input id="lastName" name="lastName" type="text" autoComplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
+                    <input id="lastName" name="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                 </section>
                 <button type="submit">Sign up</button>
             </form>
@@ -92,11 +91,12 @@ function UserScreen() {
             <h1>Order History</h1>
             {orders.length > 0 ? 
             orders.map(order => 
+                <Link to={`/orders/${order.id}`}>
                 <div className="order-info">
                     <p>{order.created}</p>
                     <p>{order.status}</p>
                     <p>{order.total}</p>
-                </div>)
+                </div></Link>)
             :
             <div>No Order History</div>
             }  
