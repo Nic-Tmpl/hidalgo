@@ -23,6 +23,18 @@ const listProducts = (category) =>  async (dispatch) => {
     }
 }
 
+const saveProduct = (product) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product});
+        const { data } = await axios.post('/products', product)
+        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+    } catch(error) {
+        dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message});
+
+    }
+    
+}
+
 const detailsProduct = (productId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
@@ -34,4 +46,4 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
-export { listProducts, detailsProduct };
+export { listProducts, saveProduct, detailsProduct };
