@@ -13,15 +13,16 @@ in the api. These both require putting the userid in the request body */
 function UserScreen() {
 
   const [orders, setOrders] = useState([]);
+  const [modal, setModal] = useState(false);
 
-  //product creation state controls
+  //editing state controls
   const [id, setId] = useState();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const userSignup = useSelector(store => store.userSignup);
-  const { loading, userInfo, error} = userSignup;
+  const userdetails = useSelector(store => store.userLogin);
+  const { loading, userInfo, error} = userdetails;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
