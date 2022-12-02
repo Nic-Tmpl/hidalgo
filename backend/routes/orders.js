@@ -15,6 +15,13 @@ router.get('/', async(req, res) => {
 router.get('/:orderId', async(req, res) => {
     const { orderId }  = req.params
     const { user_id } = req.body;
-    const { rows } = await db.query(`SELECT * FROM orders WHERE id = $1 and user_id = $2`, [orderId, user_id]);
+    const { rows } = await db.query(`WITH temp_table AS (
+        SELECT o.*, o_i.*
+        FROM "orders" o JOIN "order_item" o_i ON o_i.order_id = o.id
+        WHERE o.user_id = $1 AND o.id = $2
+        )
+
+    SELECT temp_table.*, products.*
+    FROM temp_table JOIN products ON temp_table.product_id = products.id`, [user_id, orderId]);
     res.send(rows[0]);
 });
