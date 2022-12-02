@@ -20,9 +20,26 @@ function AdminProductScreen() {
 
   const productList = useSelector(store => store.productList);
   const { products, loading, error} = productList;
+
+  const productSave = useSelector(store => store.productSave);
+  const {
+    loading: loadingSave,
+    success: successSave,
+    error: errorSave,
+  } = productSave;
+
+  const productDelete = useSelector(store => store.productDelete);
+  const {
+    loading: loadingDelete,
+    success: successDelete,
+    error: errorDelete,
+  } = productDelete;
   const dispatch = useDispatch();
 
   useEffect( () => {
+    if (successSave) {
+        setModal(false);
+    }
     dispatch(listProducts());
     /* originally this was in product actions, but for some reason would return a Promise{<fulfilled> :data } format.
      This is messier but works as intended, for reasons unknown. */
@@ -31,7 +48,7 @@ function AdminProductScreen() {
         setCategories(data);
     };
     getCategories();
-  }, [])
+  }, [successSave, successDelete])
 
   const openModal = (product) => {
     setModal(true);
@@ -44,9 +61,18 @@ function AdminProductScreen() {
     
   }
 
-  const submitHandler = () => {
-    console.log("Submitted!");
-  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(saveProduct({
+        id: id,
+        name,
+        image,
+        description,
+        category,
+        price,
+    })
+    );
+  };
 
 
     return (
