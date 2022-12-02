@@ -12,6 +12,32 @@ router.get('/', async(req, res) => {
     res.send(rows);
 });
 
+router.post('/', async(req, res) => {
+    const { name, image, description, category, price } = req.body;
+    const { rows } = await db.query(`INSERT INTO products(name, image, description, category, price, rating, numreviews)
+    VALUES( $1, $2, $3, $4, $5, 0, 0)`, [name, image, description, category, price]);
+    res.send(rows);
+})
+
+router.put('/', async(req, res) => {
+    const { id, name, image, description, category, price } = req.body;
+    const { rows } = await db.query(`UPDATE products SET
+                                    name = $1,
+                                    image = $2, 
+                                    description = $3,
+                                    category = $4,
+                                    price = $5 
+                                    WHERE id = $6`,
+            [name, image, description, category, price, id]);
+    res.send(rows);
+})
+
+router.delete('/', async(req, res) => {
+    const { id } = req.body;
+    const { rows } = await db.query(`DELETE FROM products WHERE id = $1`, [id]);
+    res.send(rows);
+})
+
 router.get('/categories', async(req, res) => {
     const { rows } = await db.query('SELECT * FROM categories');
     res.send(rows);
@@ -32,4 +58,3 @@ router.get('/:id', async(req, res) => {
                                     WHERE p.id = $1`, [id]);
     res.send(rows[0]);
 });
-
