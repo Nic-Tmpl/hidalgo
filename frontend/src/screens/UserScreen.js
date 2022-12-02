@@ -28,10 +28,17 @@ function UserScreen() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect((id) => {
-    
+  useEffect( () => {
+    /* handled in effect call so data is returned instead of a promise object. */
+    const getOrders = async (id = userInfo.id) => {
+        const { data }  =  await axios.get("/orders/", {
+            user_id: id,
+        });
+        getOrders(data);
+    };
+    getOrders();
+  }, [])
 
-  })
 
 
   const openModal = () => {
