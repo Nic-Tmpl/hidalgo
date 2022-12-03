@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, listProducts } from '../actions/productActions';
+import { deleteProduct, listProducts, saveProduct } from '../actions/productActions';
 import axios from 'axios';
 
 function AdminProductScreen() {

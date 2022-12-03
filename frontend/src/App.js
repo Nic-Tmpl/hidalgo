@@ -11,6 +11,7 @@ import LandingScreen from './screens/LandingScreen';
 import AdminProductScreen from './screens/AdminProductScreen';
 import CategoryProductScreen from './screens/CategoryProductScreen';
 import UserScreen from './screens/UserScreen';
+import OrderScreen from './screens/OrderScreen';
 
 function App() {
   const { userInfo } = useSelector(store => store.userLogin);
