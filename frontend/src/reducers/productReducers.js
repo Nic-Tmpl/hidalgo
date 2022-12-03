@@ -42,7 +42,7 @@ const productSaveReducer = (state = { product: {}}, action) => {
 const productDeleteReducer = (state = { product: {}}, action) => {
     switch(action.type) {
         case PRODUCT_DELETE_REQUEST:
-            return { loading: true };
+            return { loading: true, success: false };
         case PRODUCT_DETAILS_SUCCESS:
             return { loading: false, success: true,  product: action.payload};
         case PRODUCT_DELETE_FAIL:
