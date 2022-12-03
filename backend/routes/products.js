@@ -32,12 +32,6 @@ router.put('/', async(req, res) => {
     res.send(rows);
 })
 
-router.delete('/', async(req, res) => {
-    const { id } = req.body;
-    const { rows } = await db.query(`DELETE FROM products WHERE id = $1`, [id]);
-    res.send(rows);
-})
-
 router.get('/categories', async(req, res) => {
     const { rows } = await db.query('SELECT * FROM categories');
     res.send(rows);
@@ -58,3 +52,9 @@ router.get('/:id', async(req, res) => {
                                     WHERE p.id = $1`, [id]);
     res.send(rows[0]);
 });
+
+router.delete('/:id', async(req, res) => {
+    const { id } = req.params;
+    const { rows } = await db.query(`DELETE FROM products WHERE id = $1`, [id]);
+    res.send(rows);
+})
