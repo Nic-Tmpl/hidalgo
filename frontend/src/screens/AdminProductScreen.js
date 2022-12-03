@@ -108,9 +108,9 @@ const deleteHandler = (product) => {
                     </section>
                     <section>
                         <label htmlFor="category">Category: </label>
-                        <select name="categories" id="categories">
+                        <select name="categories" id="categories" onChange={(e) => setCategory(e.target.value)}>
                             {categories.map(cat =>
-                                <option value={cat.id}>{cat.name}</option>
+                                <option value={cat.id} >{cat.name}</option>
                             )}
                         </select>
                     </section>
