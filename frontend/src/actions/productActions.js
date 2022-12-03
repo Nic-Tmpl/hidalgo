@@ -24,14 +24,25 @@ const listProducts = (category) =>  async (dispatch) => {
 }
 
 const saveProduct = (product) => async (dispatch) => {
-    try {
-        dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product});
-        const { data } = await axios.post('/products', product)
-        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
-    } catch(error) {
-        dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message});
+    if (product.id) {
+        try {
+            dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product});
+            const { data } = await axios.put('/products', product);
+            dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+        } catch(error) {
+            dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message});
+    
+        }   
+    } else {
+        try {
+            dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product});
+            const { data } = await axios.post('/products', product);
+            dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+        } catch(error) {
+            dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message});
 
-    }   
+        }   
+    }
 }
 
 const deleteProduct = (id) => async (dispatch) => {
