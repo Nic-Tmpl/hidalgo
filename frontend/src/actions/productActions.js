@@ -48,7 +48,7 @@ const saveProduct = (product) => async (dispatch) => {
 const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DELETE_REQUEST, payload: id});
-        const { data } = await axios.delete(`/products/${id}`);
+        const { data } = await axios.delete(`/products`, id);
         dispatch ({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true});
     } catch(error) {
         dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message});
