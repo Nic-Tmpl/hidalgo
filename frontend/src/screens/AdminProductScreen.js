@@ -9,7 +9,7 @@ function AdminProductScreen() {
   const [modal, setModal] = useState(false);
 
   //product creation state controls
-  const [id, setId] = useState();
+  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState();
