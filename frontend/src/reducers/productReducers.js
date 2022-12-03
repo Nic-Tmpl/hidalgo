@@ -42,7 +42,7 @@ const productSaveReducer = (state = { product: {}}, action) => {
 const productDeleteReducer = (state = { product: {}}, action) => {
     switch(action.type) {
         case PRODUCT_DELETE_REQUEST:
-            return { loading: true, success: false };
+            return { loading: true, success: false }; //toggle success value between request/success forces useEffect re-render in AdminProductScreen
         case PRODUCT_DETAILS_SUCCESS:
             return { loading: false, success: true,  product: action.payload};
         case PRODUCT_DELETE_FAIL:
