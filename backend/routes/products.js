@@ -32,7 +32,7 @@ router.put('/', async(req, res) => {
     res.send(rows);
 })
 
-router.delete('/', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     const { id } = req.body;
     const { rows } = await db.query(`DELETE FROM products WHERE id = $1`, [id]);
     res.send(rows);

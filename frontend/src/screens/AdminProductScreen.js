@@ -56,7 +56,7 @@ function AdminProductScreen() {
     setName(product.name);
     setImage(product.image);
     setPrice(product.price);
-    setCategory(product.category);
+    setCategory(product.category_id);
     setDescription(product.description);
     
   }
