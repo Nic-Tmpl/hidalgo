@@ -26,7 +26,7 @@ function ProductScreen() {
 
 const handleAddToCart = (e) => {
     e.preventDefault();
-    userInfo.id ? navigate(`/cart/${id}?quantity=${qty}`) : navigate('/login');
+    userInfo ? navigate(`/cart/${id}?quantity=${qty}`) : navigate('/login');
 }
     return (
         loading ? <div>loading...</div> :
