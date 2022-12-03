@@ -8,8 +8,8 @@ import { detailsOrder } from '../actions/orderActions';
 
 function OrderScreen() {
 
-    const userdetails = useSelector(store => store.userLogin);
-    const { userInfo } = userdetails;
+    const userDetails = useSelector(store => store.userLogin);
+    const { userInfo } = userDetails;
 
     const orderDetails = useSelector(store => store.orderDetails);
     const { order, loading, error } = orderDetails;

@@ -14,6 +14,10 @@ function ProductScreen() {
 
    const productDetails = useSelector(store => store.productDetails);
    const { product, loading, error } = productDetails;
+
+   const userDetails = useSelector(store => store.userLogin);
+   const { userInfo } = userDetails;
+
    const dispatch = useDispatch();
 
    useEffect(() => {
@@ -22,7 +26,7 @@ function ProductScreen() {
 
 const handleAddToCart = (e) => {
     e.preventDefault();
-    navigate(`/cart/${id}?quantity=${qty}`);
+    userInfo.id ? navigate(`/cart/${id}?quantity=${qty}`) : navigate('/login');
 }
     return (
         loading ? <div>loading...</div> :
