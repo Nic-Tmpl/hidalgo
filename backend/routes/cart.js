@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.post('/', async(req, res) => {
     const { user_id } = req.body;
     const time = new Date().toISOString();
-    const { rows } = await db.query(`INSERT INTO cart (user_id, created) VALUES ($1, $2)`, [user_id, time]);
+    const { rows } = await db.query(`INSERT INTO cart (user_id, created, modified, total) VALUES ($1, $2, $3, $4)`, [user_id, time, time, 0.00]);
     res.status(200);
     res.send(rows);
 });
