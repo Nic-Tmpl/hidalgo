@@ -12,6 +12,7 @@ import AdminProductScreen from './screens/AdminProductScreen';
 import CategoryProductScreen from './screens/CategoryProductScreen';
 import UserScreen from './screens/UserScreen';
 import OrderScreen from './screens/OrderScreen';
+import ShippingScreen from './screens/ShippingScreen';
 
 function App() {
   const { userInfo } = useSelector(store => store.userLogin);
@@ -60,6 +61,7 @@ function App() {
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart/:id" element={<CartScreen />} />
               <Route path="/products" element={<AllProductsScreen />} />
+              <Route path ="/shipping" element={<ShippingScreen />} />
               <Route path="/" element={<LandingScreen />} />
             </Routes>
           </div>

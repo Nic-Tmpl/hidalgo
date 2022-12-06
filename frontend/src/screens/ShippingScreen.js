@@ -7,26 +7,17 @@ import { login, signup } from '../actions/userActions';
 
 
 function ShippingScreen() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const userSignup = useSelector(store => store.userSignup);
-    const { loading, userInfo, error} = userSignup;
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+    const [postalCode, setPostalCode] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(signup(email, password, firstName, lastName));
+        dispatch(saveShipping(address, city, country, postalCode));
     }
-
-    useEffect(() => {
-        if (userInfo) {
-            dispatch(login(email, password));
-            navigate('/');
-        }
-    })
 
 
 
@@ -37,24 +28,23 @@ function ShippingScreen() {
             <h1>Shipping</h1>
             <form onSubmit={submitHandler}>
                 <section>
-                    <label htmlFor="email">Email: </label>
-                    <input id="email" name="email" type="email" autoComplete="email" required onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor="address">Address: </label>
+                    <input id="address" name="address" type="text" autoComplete="address" required onChange={(e) => setAddress(e.target.value)} />
                 </section>
                 <section>
-                    <label htmlFor="password">Password: </label>
-                    <input id="password" name="password" type="password" autoComplete="new-password" required onChange={(e) => setPassword(e.target.value)}/>
+                    <label htmlFor="city">City: </label>
+                    <input id="city" name="city" type="text" required onChange={(e) => setCity(e.target.value)} />
                 </section>
                 <section>
-                    <label htmlFor="firstName">First Name: </label>
-                    <input id="firstName" name="firstName" type="text" autoComplete="firstName" required onChange={(e) => setFirstName(e.target.value)} />
+                    <label htmlFor="country">Country: </label>
+                    <input id="country" name="country" type="text" required onChange={(e) => setCountry(e.target.value)} />
                 </section>
                 <section>
-                    <label htmlFor="lastName">Last Name: </label>
-                    <input id="lastName" name="lastName" type="text" autoComplete="lastName" required onChange={(e) => setLastName(e.target.value)} />
+                    <label htmlFor="postal-code">Postal Code: </label>
+                    <input id="postal-code" name="postal-code" type="text" required onChange={(e) => setPostalCode(e.target.value)} />
                 </section>
-                <button type="submit">Sign up</button>
+                <button type="submit">Continue</button>
             </form>
-            <p className="help">Already have an account? <Link to="/login">Sign in</Link></p>
         </div>
     </div>
     )
