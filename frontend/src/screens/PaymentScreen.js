@@ -7,7 +7,7 @@ import CheckoutSteps from '../components/checkoutSteps';
 
 
 
-function ShippingScreen() {
+function PaymentScreen() {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [country, setCountry] = useState('');
@@ -54,4 +54,4 @@ function ShippingScreen() {
     )
 };
 
-export default ShippingScreen;
+export default PaymentScreen;

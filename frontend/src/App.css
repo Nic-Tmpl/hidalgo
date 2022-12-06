@@ -334,3 +334,25 @@ li {
   background-color: gold;
   cursor: pointer;
 }
+
+/* Checkout Steps */
+
+
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+
+.checkout-steps div {
+  border-top: .3rem black solid;
+  color: black;
+  flex: 1 1;
+  padding-top: .5rem;
+}
+
+.checkout-steps div .active {
+  border-top: .3rem red solid;
+  color: red;
+}
