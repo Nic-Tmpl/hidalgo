@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect } from 'react';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,9 +7,6 @@ import CheckoutSteps from '../components/checkoutSteps';
 
 
 function PlaceOrderScreen() {
-    const [queryParams] = useSearchParams();
-    const qty = Number(queryParams.get('quantity'));
-    const { id } = useParams();
     const navigate = useNavigate();
 
     const cart = useSelector(store => store.cart);
@@ -19,7 +16,7 @@ function PlaceOrderScreen() {
     } else if (!payment.paymentMethod) {
         navigate("/shipping/payment");
     }
-    const dispatch = useDispatch();
+    // dispatch = useDispatch();
 
 
     useEffect(() => {

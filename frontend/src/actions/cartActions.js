@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING } from '../constants/cartConstants';
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING } from '../constants/cartConstants';
 import axios from 'axios';
 
 const addToCart = (productId, quantity) => async (dispatch) => {
@@ -28,4 +28,9 @@ const saveShipping = (data) => (dispatch) => {
     dispatch({ type: CART_SAVE_SHIPPING, payload: data});
 }
 
-export { addToCart, removeFromCart, saveShipping };
+const savePayment = (data) => (dispatch) => {
+    dispatch({ type: CART_SAVE_PAYMENT, payload: data});
+}
+
+
+export { addToCart, removeFromCart, saveShipping, savePayment };
