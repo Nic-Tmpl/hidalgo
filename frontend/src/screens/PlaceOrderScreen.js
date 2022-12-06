@@ -10,17 +10,13 @@ function PlaceOrderScreen() {
     const navigate = useNavigate();
 
     const cart = useSelector(store => store.cart);
-    const { cartItems , shipping, payment } = cart;
+    const { cartItems, shipping, payment } = cart;
     if (!shipping.address) {
         navigate("/shipping");
     } else if (!payment.paymentMethod) {
         navigate("/shipping/payment");
     }
     // dispatch = useDispatch();
-
-
-    useEffect(() => {
-    }, []);
 
     const placeOrderHandler = () => {
         //dispatch order action
@@ -37,13 +33,13 @@ function PlaceOrderScreen() {
                         <h3>Shipping</h3>
                     </div>
                 <div>
-                    {cart.shipping.address}, {cart.shipping.city},
-                    {cart.shipping.postalCode}, {cart.shippping.country}
+                    {shipping.address}, {shipping.city},
+                    {shipping.postalCode}, {shipping.country}
                 </div>
                 <div>
                     <h3>Payment</h3>
                     <div>
-                        {cart.payment.paymentMethod}
+                        {payment.paymentMethod}
                     </div>
                 </div>
                     <ul>

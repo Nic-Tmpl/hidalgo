@@ -14,8 +14,8 @@ function PaymentScreen() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(savePayment(paymentMethod));
-        navigate("/shipping/payment");
+        dispatch(savePayment({paymentMethod: paymentMethod}));
+        navigate("/shipping/place-order");
     }
 
 
@@ -28,8 +28,13 @@ function PaymentScreen() {
             <h1>Payment</h1>
             <form onSubmit={submitHandler}>
                 <section>
-                    <label htmlFor="payment">Payment Method: </label>
-                    <input id="payment" name="thoughts and prayers" type="radio" required onChange={(e) => setPaymentMethod(e.target.value)} />
+                    <input 
+                        type="radio"
+                        id="paymentmethod" 
+                        name="paymentmethod" 
+                        value="thoughts and prayers"
+                         onChange={(e) => setPaymentMethod(e.target.value)} />
+                        <label htmlFor="paymentmethod">thoughts and prayers</label>
                 </section>
                 <button type="submit">Continue</button>
             </form>
