@@ -29,7 +29,7 @@ function PaymentScreen() {
             <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="payment">Payment Method: </label>
-                    <input id="payment" name="payment" type="radio" required onChange={(e) => setPaymentMethod(e.target.value)} />
+                    <input id="payment" name="thoughts and prayers" type="radio" required onChange={(e) => setPaymentMethod(e.target.value)} />
                 </section>
                 <button type="submit">Continue</button>
             </form>

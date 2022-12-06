@@ -1,8 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import '../App.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { savePayment } from '../actions/cartActions';
 import CheckoutSteps from '../components/checkoutSteps';
 
 
@@ -15,22 +14,20 @@ function PlaceOrderScreen() {
 
     const cart = useSelector(store => store.cart);
     const { cartItems , shipping, payment } = cart;
+    if (!shipping.address) {
+        navigate("/shipping");
+    } else if (!payment.paymentMethod) {
+        navigate("/shipping/payment");
+    }
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        if(id) {
-            dispatch(addToCart(id, qty));
-            console.log('i fire once');
-        }
     }, []);
 
-    const handleRemoveFromCart = (id) => {
-        dispatch(removeFromCart(id));
-    }
-
-    const handleCheckout = () => {
-        navigate("/shipping");
+    const placeOrderHandler = () => {
+        //dispatch order action
+        navigate("/congrats")
     }
 
 
@@ -69,12 +66,18 @@ function PlaceOrderScreen() {
 
             </div>
             <div className="placeorder-action">
-                    <h3>
-                        Subtotal: ({cartItems.reduce((value, current) => value + current.quantity, 0)} items)
-                        : $ {cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
-                    </h3>
-                    <button onClick={handleCheckout} disabled={cartItems.length===0}>Checkout</button>
-
+                <button onClick={placeOrderHandler}>Place Order</button>
+                <ul>
+                    <li>
+                        <h3>Order Summary</h3>
+                    </li>
+                    <li>
+                    {cartItems.reduce((value, current) => value + current.quantity, 0)} items
+                    </li>
+                    <li>
+                    $ {cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
