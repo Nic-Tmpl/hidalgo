@@ -3,6 +3,7 @@ import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckoutSteps from '../components/checkoutSteps';
+import { makeOrder } from '../actions/orderActions';
 
 
 
@@ -19,15 +20,12 @@ function PlaceOrderScreen() {
     } else if (!payment.paymentMethod) {
         navigate("/shipping/payment");
     }
-    // dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const cartTotal = cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0);
 
     const placeOrderHandler = () => {
-        //dispatch order action
-        console.log(cartItems);
-        console.log(userInfo.id);
-        console.log(cartTotal)
+        dispatch(makeOrder(userInfo.id, cartTotal, cartItems));
         navigate("/congrats");
     }
 
