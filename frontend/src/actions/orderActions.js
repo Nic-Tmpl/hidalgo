@@ -8,7 +8,7 @@ const makeOrder = (userId, cartTotal, cartItems ) => async (dispatch) => {
             {
                 const { data } = results;
                 const orderItems = await axios.post(`/orders/orderItems`, { orderId: data[0].id, cartItems: cartItems });
-                dispatch({ type: CREATE_ORDER_SUCCESS, payload: orderItems });
+                dispatch({ type: CREATE_ORDER_SUCCESS });
             })
     }
     catch (error) {
