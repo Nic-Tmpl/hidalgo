@@ -12,6 +12,21 @@ router.get('/', async(req, res) => {
     res.send(rows);
 });
 
+router.post('/', async(req, res) => {
+    const { user_id, total } = req.body;
+    const time = new Date.toISOstring();
+    const { rows } = await db.query(`INSERT INTO orders (user_id, total, status, created) 
+        VALUES $1, $2, 'Shipped', $3`, [user_id, total, time]);
+    res.send(rows);
+})
+
+router.post('/:orderItems', async(req, res) => {
+    const { id, productId, quantity} = req.body;
+    const { rows } = await db.query(`INSERT INTO order_item (order_id, product_id, quantity)
+        VALUES $1, $2, $3`, [id, productId, quantity]);
+    res.send(rows);
+})
+
 router.get('/:orderId', async(req, res) => {
     const { orderId }  = req.params
     const { user_id } = req.body;
