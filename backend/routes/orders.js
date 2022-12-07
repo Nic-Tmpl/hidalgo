@@ -7,7 +7,7 @@ const router = new Router();
 module.exports = router;
 
 router.get('/', async(req, res) => {
-    const { id } = req.body; //gets user id
+    const id = req.query["id"]; //gets user id
     const { rows } = await db.query(`SELECT * FROM orders WHERE user_id = $1`, [id]);
     res.send(rows);
 });
@@ -28,6 +28,8 @@ router.post('/orderItems', async(req, res) => {
         VALUES ($1, $2, $3)`, [orderId, product.id, quantity]);
     };
 })
+
+
 
 router.get('/:orderId', async(req, res) => {
     const { orderId }  = req.params

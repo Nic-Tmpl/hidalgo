@@ -40,7 +40,7 @@ function App() {
             <menu>
               {userInfo.isadmin ?
               <li><Link to="/adminpage">{userInfo.first_name}</Link></li>:
-              <li>{userInfo.first_name}</li>
+              <li><Link to={`/users/${userInfo.id}`}>{userInfo.first_name}</Link></li>
             }
             <li>Cart</li>
             <button onClick={handleLogout}>Logout</button> 

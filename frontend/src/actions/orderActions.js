@@ -18,8 +18,9 @@ const makeOrder = (userId, cartTotal, cartItems ) => async (dispatch) => {
 
 const listOrders = (userId) =>  async (dispatch) => {
     try{
-        dispatch({ type: ORDER_HISTORY_REQUEST, payload: userId}); 
-        const { data } = await axios.get(`/orders`, { id: userId });
+        dispatch({ type: ORDER_HISTORY_REQUEST }); 
+        const { data } = await axios.get(`/orders`, {params : { id : userId }});
+        console.log(data);
         dispatch({ type: ORDER_HISTORY_SUCCESS, payload: data });
     }
     catch(error) {

@@ -21,10 +21,7 @@ function UserScreen() {
   const { loading, userInfo, error} = userdetails;
 
   const orderList = useSelector(store => store.orderList);
-  const { 
-    loading: orderLoading,
-    orders: orders,
-    error: orderError } = orderList;
+  const { orders } = orderList;
   const [id, setId] = useState(userInfo.id);
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState('');
@@ -41,7 +38,7 @@ function UserScreen() {
 
 
   const openModal = () => {
-    setModal(true);
+    setModal(!modal);
   }
 
   const submitHandler = (e) => {
@@ -84,12 +81,12 @@ function UserScreen() {
                     <label htmlFor="lastName">Last Name: </label>
                     <input id="lastName" name="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                 </section>
-                <button type="submit">Sign up</button>
+                <button type="submit">Update Info</button>
             </form>
          :
          <div className="orders">
             <h1>Order History</h1>
-            {orders.length > 0 ? 
+            {orders ? 
             orders.map(order => 
                 <Link to={`/orders/${order.id}`}>
                 <div className="order-info">
