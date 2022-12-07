@@ -9,6 +9,9 @@ import CheckoutSteps from '../components/checkoutSteps';
 function PlaceOrderScreen() {
     const navigate = useNavigate();
 
+    const user = useSelector(store => store.userLogin);
+    const { userInfo } = user;
+
     const cart = useSelector(store => store.cart);
     const { cartItems, shipping, payment } = cart;
     if (!shipping.address) {
@@ -18,9 +21,14 @@ function PlaceOrderScreen() {
     }
     // dispatch = useDispatch();
 
+    const cartTotal = cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0);
+
     const placeOrderHandler = () => {
         //dispatch order action
-        navigate("/congrats")
+        console.log(cartItems);
+        console.log(userInfo.id);
+        console.log(cartTotal)
+        navigate("/congrats");
     }
 
 
@@ -68,7 +76,7 @@ function PlaceOrderScreen() {
                     {cartItems.reduce((value, current) => value + current.quantity, 0)} items
                     </li>
                     <li>
-                    $ {cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
+                    $ {cartTotal}
                     </li>
                 </ul>
             </div>

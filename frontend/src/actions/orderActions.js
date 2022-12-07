@@ -1,5 +1,17 @@
-import { ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_HISTORY_FAIL, ORDER_HISTORY_REQUEST, ORDER_HISTORY_SUCCESS } from '../constants/orderConstants';
+import { CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_HISTORY_FAIL, ORDER_HISTORY_REQUEST, ORDER_HISTORY_SUCCESS } from '../constants/orderConstants';
 import axios from 'axios';
+
+const makeOrder = (userId, cartTotal, cartItems ) => async (dispatch) => {
+    try {
+        dispatch({ type: CREATE_ORDER_REQUEST, payload: { userId, cartTotal, cartItems }});
+        const { data } = await axios.post(`/orders/`, { user_id: userId, total: cartTotal }); // should hopefully return the order id
+        const orderItems = await axios.post(`/orders/orderItems`, { id: data, cartItems: cartItems });
+        dispatch({ type: CREATE_ORDER_SUCCESS, payload: orderItems });
+    }
+    catch (error) {
+        dispatch ({ type:CREATE_ORDER_FAIL, payload: error.message});
+    }
+}
 
 const listOrders = (userId) =>  async (dispatch) => {
     try{
@@ -23,4 +35,4 @@ const detailsOrder = (orderId, userId) => async (dispatch) => {
     }
 }
 
-export { listOrders, detailsOrder };
+export { makeOrder, listOrders, detailsOrder };
