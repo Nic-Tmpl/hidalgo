@@ -21,11 +21,11 @@ router.post('/', async(req, res) => {
 })
 
 router.post('/orderItems', async(req, res) => {
-    const { id, cartItems} = req.body;
-    for (item of cartItems) {
-        const {product, quantity} = cartItems;
+    const { orderId, cartItems } = req.body;
+    for (const item of cartItems) {
+        const {product, quantity} = item;
         const { rows } = await db.query(`INSERT INTO order_item (order_id, product_id, quantity)
-        VALUES ($1, $2, $3)`, [id, product.id, quantity]);
+        VALUES ($1, $2, $3)`, [orderId, product.id, quantity]);
     };
 })
 

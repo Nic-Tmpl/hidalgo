@@ -3,10 +3,13 @@ import axios from 'axios';
 
 const makeOrder = (userId, cartTotal, cartItems ) => async (dispatch) => {
     try {
-        dispatch({ type: CREATE_ORDER_REQUEST, payload: { userId, cartTotal, cartItems }});
-        const { data } = await axios.post(`/orders/`, { user_id: userId, total: cartTotal }); // should hopefully return the order id
-        const orderItems = await axios.post(`/orders/orderItems`, { id: data, cartItems: cartItems });
-        dispatch({ type: CREATE_ORDER_SUCCESS, payload: orderItems });
+        dispatch({ type: CREATE_ORDER_REQUEST });
+        const results = await axios.post(`/orders`, { user_id: userId, total: cartTotal }).then(async results =>
+            {
+                const { data } = results;
+                const orderItems = await axios.post(`/orders/orderItems`, { orderId: data[0].id, cartItems: cartItems });
+                dispatch({ type: CREATE_ORDER_SUCCESS, payload: orderItems });
+            })
     }
     catch (error) {
         dispatch ({ type:CREATE_ORDER_FAIL, payload: error.message});
