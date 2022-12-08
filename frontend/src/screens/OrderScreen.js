@@ -14,14 +14,15 @@ function OrderScreen() {
     const orderDetails = useSelector(store => store.orderDetails);
     const { order, loading, error } = orderDetails;
 
-   const { orderId } = useParams(); //useParams returns an object with string values
+   const { id } = useParams(); //useParams returns an object with string values
    const [userId, setuserId] = useState(userInfo.id);
 
 
    const dispatch = useDispatch();
 
    useEffect(() => {
-    dispatch(detailsOrder(orderId, userId));   
+    console.log(id);
+    dispatch(detailsOrder(id, userId));   
    }, [])
     return (
         loading ? <div>loading...</div> :

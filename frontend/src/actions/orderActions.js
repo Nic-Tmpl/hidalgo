@@ -30,8 +30,10 @@ const listOrders = (userId) =>  async (dispatch) => {
 
 const detailsOrder = (orderId, userId) => async (dispatch) => {
     try {
-        dispatch({ type: ORDER_DETAILS_REQUEST, payload: {orderId, userId }});
-        const { data } = await axios.get(`/orders/${orderId}`, { user_id: userId });
+        const params = {user_id: userId, order_id: orderId};
+        dispatch({ type: ORDER_DETAILS_REQUEST, payload: params });
+        const { data } = await axios.get(`/orders/details`, { params : params });
+        console.log(data);
         dispatch({type: ORDER_DETAILS_SUCCESS, payload: data});
     } 
     catch(error) {
