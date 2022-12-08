@@ -38,6 +38,7 @@ function App() {
   
   return (
       <div className="body">
+        <div className="content-wrap">
         <header className="header">
           <div className="logo"><Link to="/">Hidalgo</Link></div>
             { userInfo ? 
@@ -68,6 +69,7 @@ function App() {
               <Route path="/products/categories/:id" element={<CategoryProductScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
+              <Route path="/cart/:id" element={<CartScreen />} />
               <Route path="/products" element={<AllProductsScreen />} />
               <Route path ="/shipping" element={<ShippingScreen />} />
               <Route path="/shipping/payment" element={<PaymentScreen />} />
@@ -77,6 +79,7 @@ function App() {
             </Routes>
           </div>
       </main>
+      </div>
       <footer className="footer">All Rights Reserved.</footer>
   </div>
   );

@@ -56,7 +56,7 @@ function CartScreen() {
                                     <Link to={`/products/${item.product.id}`}>{item.product.name}</Link>
                                     <div className="quantity">
                                         Qty:
-                                        <input id="quantity" type="number" name="quantity" min="0" value={item.quantity} 
+                                        <input id="quantity" type="number" name="quantity" min="1" value={item.quantity} 
                                                 onChange={(e) => dispatch(addToCart(item.product.id, e.target.value))}/>
                                     </div>
                                     <button onClick={(e) => handleRemoveFromCart(item.product)}>Delete</button>
@@ -70,8 +70,10 @@ function CartScreen() {
             </div>
             <div className="cart-action">
                     <h3>
-                        Subtotal: ({cartItems.reduce((value, current) => value + current.quantity, 0)} items)
-                        : $ {cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
+                        Subtotal: ${cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
+                    </h3>
+                    <h3>
+                    ({cartItems.reduce((value, current) => value + current.quantity, 0)} items)
                     </h3>
                     <button onClick={handleCheckout} disabled={cartItems.length===0}>Checkout</button>
 

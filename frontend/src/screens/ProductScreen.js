@@ -32,7 +32,7 @@ const handleAddToCart = (e) => {
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
         <div className="body-content">
-            <div><Link to="/products">Back To Products</Link></div>
+            <div className="link-back"><Link to="/products">Back To Products</Link></div>
         <div className="product-details">
             <div className="details-image">
                 <img src={product.image} alt={product.name} />
@@ -40,7 +40,7 @@ const handleAddToCart = (e) => {
             <div className="details-info">
                 <h1>{product.name}</h1>
                 <h3>${product.price}</h3>
-                <p>{product.rating} ({product.numreviews} Reviews)</p>
+                <p>Rated {product.rating} out of 5 ({product.numreviews} Reviews)</p>
                 <p>{product.description}</p>
             </div>
             <div className="details-order">
@@ -50,8 +50,9 @@ const handleAddToCart = (e) => {
                     <input id="quantity" type="number" name="quantity" min="0" value={qty} onChange={(e) => setQty(e.target.value)}/><br/>
                 </form>
                 <button type="submit" form="quantity-form">Add to Cart</button>
-            </div>
+            </div>  
         </div>
+
     </div>
     );
 };
