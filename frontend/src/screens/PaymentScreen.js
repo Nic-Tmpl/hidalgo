@@ -21,13 +21,14 @@ function PaymentScreen() {
 
 
     return (
-        <div>
-            <CheckoutSteps step1 step2 step3></CheckoutSteps>
         <div className="form-container">
+            <div className="checkout-header">
+            <CheckoutSteps step1 step2 step3></CheckoutSteps>
+            </div>
             <div className="form-content">
-            <h1>Payment</h1>
+            <h1 className="payment-header">Payment</h1>
             <form onSubmit={submitHandler}>
-                <section>
+                <section className="payment">
                     <input 
                         type="radio"
                         id="paymentmethod" 
@@ -39,7 +40,6 @@ function PaymentScreen() {
                 <button type="submit">Continue</button>
             </form>
         </div>
-    </div>
     </div>
     )
 };

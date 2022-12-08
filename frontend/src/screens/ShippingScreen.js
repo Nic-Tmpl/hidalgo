@@ -24,9 +24,10 @@ function ShippingScreen() {
 
 
     return (
-        <div>
-            <CheckoutSteps step1 step2></CheckoutSteps>
         <div className="form-container">
+            <div className="checkout-header">
+            <CheckoutSteps step1 step2></CheckoutSteps>
+            </div>
             <div className="form-content">
             <h1>Shipping</h1>
             <form onSubmit={submitHandler}>
@@ -50,7 +51,7 @@ function ShippingScreen() {
             </form>
         </div>
     </div>
-    </div>
+
     )
 };
 

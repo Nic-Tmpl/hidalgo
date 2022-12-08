@@ -31,24 +31,40 @@ function PlaceOrderScreen() {
 
 
     return (
-        <div>
+        <div className="order-form-container">
+            <div className="checkout-header">
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+            </div>
             <div className="placeorder">
                 <div className="placeorder-info">
                     <div>
-                        <h3>Shipping</h3>
+                        <h3>Shipping Address:</h3>
                     </div>
                 <div>
-                    {shipping.address}, {shipping.city},
-                    {shipping.postalCode}, {shipping.country}
+                    {shipping.address}, {shipping.city}, {shipping.postalCode}, {shipping.country}
                 </div>
                 <div>
-                    <h3>Payment</h3>
+                    <h3>Payment Method:</h3>
+                </div>
                     <div>
                         {payment.paymentMethod}
                     </div>
+                    <div>
+                        <h3>Order Summary:</h3>
+                    </div>
+                    <div>
+                    {cartItems.reduce((value, current) => value + current.quantity, 0)} items
+                    </div>
+                    <div>
+                        <h3>Total: </h3>
+                    </div>
+                    <div>
+                    $ {cartTotal}
+                    </div>
+                <button onClick={placeOrderHandler}>Place Order</button>
                 </div>
-                    <ul>
+                <div className="order-list">
+                    <ul className="cart-list-container">
                     {
                         cartItems.map( item =>
                             <li key={item.product.id}>
@@ -57,30 +73,14 @@ function PlaceOrderScreen() {
                                 </div>
                                 <div className="cart-item-name">{item.product.name}</div>
                                 <div className="quantity">Qty:{item.quantity}</div>
-                                <div className="cart-item-price">${item.product.price}</div>
+                                <div className="cart-item-price">${item.product.price * item.quantity}</div>
                             </li>
                         )
                     }
                 </ul>
-
-            </div>
-            <div className="placeorder-action">
-                <button onClick={placeOrderHandler}>Place Order</button>
-                <ul>
-                    <li>
-                        <h3>Order Summary</h3>
-                    </li>
-                    <li>
-                    {cartItems.reduce((value, current) => value + current.quantity, 0)} items
-                    </li>
-                    <li>
-                    $ {cartTotal}
-                    </li>
-                </ul>
+                </div>
             </div>
         </div>
-    </div>
-
     )
 }
 
