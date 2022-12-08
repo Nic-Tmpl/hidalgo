@@ -21,7 +21,6 @@ function CartScreen() {
     useEffect(() => {
         if(id) {
             dispatch(addToCart(id, qty));
-            console.log('i fire once');
         }
     }, []);
 

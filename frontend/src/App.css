@@ -54,6 +54,10 @@ li {
   list-style-type: none;
 }
 
+.logout-button {
+  cursor: pointer;
+}
+
 .footer {
   background-color: #36454F;
   font-size: 1.6rem;
@@ -168,6 +172,10 @@ li {
 }
 
 /* Product Screen styles */
+
+.body-content {
+  height: 80vh;
+}
 
 .product-details {
   display: flex;

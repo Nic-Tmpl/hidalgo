@@ -30,6 +30,10 @@ function App() {
     navigate("/");
   }
 
+  //this capitalizes the first letter of the user's name, so display is the prettiest girl at the ball
+  const userName = userInfo ? userInfo.first_name.charAt(0).toUpperCase() + userInfo.first_name.slice(1) : '' ;
+
+
 
   
   return (
@@ -40,14 +44,15 @@ function App() {
             <menu>
               {userInfo.isadmin ?
               <li><Link to="/adminpage">{userInfo.first_name}</Link></li>:
-              <li><Link to={`/users/${userInfo.id}`}>{userInfo.first_name}</Link></li>
+              <li><Link to={`/users/${userInfo.id}`}>{userName}</Link></li>
             }
-            <li>Cart</li>
-            <button onClick={handleLogout}>Logout</button> 
+            <li><Link to="/cart">Cart</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li className="logout-button" onClick={handleLogout}>Logout</li> 
             </menu>
             :
             <menu>
-            <li>Cart</li>
+            <li><Link to="/products">Products</Link></li>
             <li><Link to="/login">Login</Link></li>
             </menu>
             }
@@ -62,7 +67,7 @@ function App() {
               <Route path="/orders/:id" element={<OrderScreen />} />
               <Route path="/products/categories/:id" element={<CategoryProductScreen />} />
               <Route path="/products/:id" element={<ProductScreen />} />
-              <Route path="/cart/:id" element={<CartScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
               <Route path="/products" element={<AllProductsScreen />} />
               <Route path ="/shipping" element={<ShippingScreen />} />
               <Route path="/shipping/payment" element={<PaymentScreen />} />
