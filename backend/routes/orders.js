@@ -41,6 +41,6 @@ router.get('/:orderId', async(req, res) => {
         )
 
     SELECT temp_table.*, p.name AS name, p.price AS price, p.image AS image
-    FROM temp_table JOIN products ON temp_table.product_id = products.id`, [user_id, orderId]);
+    FROM temp_table JOIN products p ON temp_table.product_id = p.id`, [user_id, orderId]);
     res.send(rows[0]);
 });
