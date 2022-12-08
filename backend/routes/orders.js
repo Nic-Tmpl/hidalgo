@@ -32,15 +32,17 @@ router.post('/orderItems', async(req, res) => {
 
 
 router.get('/details', async(req, res) => {
-    const { order_id } = req.query["order_id"];
-    const { user_id } = req.query["user_id"];
-    const { rows } = await db.query(`WITH temp_table AS (
+    const order_id = req.query["order_id"];
+    const user_id = req.query["user_id"];
+  /*  const { order } = await db.query(`SELECT * FROM orders WHERE id = $1 AND user_id = $2`, [order_id, user_id]);*/
+   const { rows } = await db.query(`WITH temp_table AS (
         SELECT o.*, o_i.*
-        FROM "orders" o JOIN "order_item" o_i ON o_i.order_id = o.id
+        FROM orders o JOIN order_item o_i ON o_i.order_id = o.id
         WHERE o.user_id = $1 AND o.id = $2
-        )`
+        )
 
-   /* SELECT temp_table.*, p.name AS name, p.price AS price, p.image AS image
-    FROM temp_table JOIN products p ON temp_table.product_id = p.id`*/, [user_id, order_id]);
+    SELECT temp_table.*, p.name AS name, p.price AS price, p.image AS image
+    FROM temp_table 
+    JOIN products p ON temp_table.product_id = p.id`, [user_id, order_id]);
     res.send(rows);
-});
+})
