@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
 
@@ -31,6 +31,8 @@ const handleAddToCart = (e) => {
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
+        <div className="body-content">
+            <div><Link to="/products">Back To Products</Link></div>
         <div className="product-details">
             <div className="details-image">
                 <img src={product.image} alt={product.name} />
@@ -38,7 +40,8 @@ const handleAddToCart = (e) => {
             <div className="details-info">
                 <h1>{product.name}</h1>
                 <h3>${product.price}</h3>
-                <p>{product.rating} ({product.numReviews} Reviews)</p>
+                <p>{product.rating} ({product.numreviews} Reviews)</p>
+                <p>{product.description}</p>
             </div>
             <div className="details-order">
                 <p>Price: ${product.price}</p>
@@ -47,9 +50,9 @@ const handleAddToCart = (e) => {
                     <input id="quantity" type="number" name="quantity" min="0" value={qty} onChange={(e) => setQty(e.target.value)}/><br/>
                 </form>
                 <button type="submit" form="quantity-form">Add to Cart</button>
-
             </div>
         </div>
+    </div>
     );
 };
 
