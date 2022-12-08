@@ -73,7 +73,7 @@ function CartScreen() {
                         Subtotal: ${cartItems.reduce((total, current) => total + (current.product.price * current.quantity), 0)}
                     </h3>
                     <h3>
-                    ({cartItems.reduce((value, current) => value + current.quantity, 0)} items)
+                    ({/*This needs to be fixed */cartItems.reduce((value, current) => value + current.quantity, 0)} items)
                     </h3>
                     <button onClick={handleCheckout} disabled={cartItems.length===0}>Checkout</button>
 
