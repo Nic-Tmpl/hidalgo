@@ -87,13 +87,16 @@ function UserScreen() {
          <div className="orders">
             <h1>Order History</h1>
             {orders ? 
-            orders.map(order => 
-                <Link to={`/orders/${order.id}`}>
+            <ul>
+            { orders.map(order =>
+              <li key={order.id}>
                 <div className="order-info">
-                    <p>{order.created}</p>
+                    <p><Link to={`/orders/${order.id}`}>{order.created}</Link></p>
                     <p>{order.status}</p>
                     <p>{order.total}</p>
-                </div></Link>)
+               </div>
+            </li>)}
+            </ul>
             :
             <div>No Order History</div>
             }  
