@@ -16,24 +16,38 @@ function OrderScreen() {
 
    const { id } = useParams(); //useParams returns an object with string values
    const [userId, setuserId] = useState(userInfo.id);
+   const [orderId, setOrderId] = useState();
+   const [orderStatus, setOrderStatus] = useState('');
+   const [orderTotal, setOrderTotal] = useState(0.00);
 
 
    const dispatch = useDispatch();
 
    useEffect(() => {
     console.log(id);
-    dispatch(detailsOrder(id, userId));   
+    dispatch(detailsOrder(id, userId)); 
+    setOrderId(order[0].id);
+    setOrderStatus(order[0].status);
+    setOrderTotal(order[0].total);
    }, [])
+
+
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
-        <div className="order-details">
-            <div className="order-info">
-                <h1>ORDER ID: {order[0].id}</h1>
-                <h1>STATUS: {order[0].status}</h1>
-                <h1>TOTAL: ${order[0].total}</h1>
+        <div className="form-container-2">
+        <div className="placeorder">
+            <div className="placeorder-info">
+                <h1>Order Info</h1>
+                <h3>ORDER ID: </h3>
+                <p>{orderId}</p>
+                <h3>STATUS: </h3> 
+                <p>{orderStatus}</p>
+                <h3>TOTAL: </h3>
+                <p>${orderTotal}</p>
             </div>
-            <ul>
+            <div className="order-list">
+            <ul className="cart-list-container">
             {order.map((item) =>
             <li key={order.product_id}>
             <div className="product-image">
@@ -47,7 +61,9 @@ function OrderScreen() {
             </div>
             </li>)}
             </ul>
+            </div>
         </div>
+    </div>
 )};
 
 export default OrderScreen;
