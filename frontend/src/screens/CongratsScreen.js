@@ -14,10 +14,7 @@ function CongratsScreen() {
     }
     return (
         <div className="congrats">
-            <div className="tophalf">
-
-            </div>
-            <div className="bottomhalf">
+            <div className="congrats-content">
                 <h1>Congrats!!!</h1>
                 <p>Your order has been placed!</p>
                 <button onClick={redirectHandler}>Home</button>
