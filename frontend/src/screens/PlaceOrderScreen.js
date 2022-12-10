@@ -31,7 +31,7 @@ function PlaceOrderScreen() {
 
 
     return (
-        <div className="order-form-container">
+        <div className="form-container-2">
             <div className="checkout-header">
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
             </div>

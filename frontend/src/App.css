@@ -402,9 +402,9 @@ li {
   margin-left: 9rem;
 }
 
-/* Place Order Screen styling */
+/* Place Order Screen and User Screen styling */
 
-.order-form-container {
+.form-container-2 {
   background-image: linear-gradient(-135deg, #ff0084, #33001b);
   display: flex;
   flex-direction: column;
@@ -430,14 +430,15 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
 }
 
 .placeorder-info button {
   margin-top: 5rem;
   padding: 1rem;
   width: 75%;
+  font-size: 1.6rem;
   border: .1rem black solid;
+  border-radius: 0.5rem;
   background-color: gold;
   cursor: pointer;
   align-self: center;
@@ -454,3 +455,34 @@ li {
     min-width: 30vw;
 }
 
+
+.user-account-info{
+  margin: 1rem;
+  border: .1rem grey solid;
+  border-radius: .5rem;
+  background-color: aliceblue;
+  opacity: 0.9;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 25vw;
+  height: fit-content;
+}
+
+.user-account-info button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 50%;
+  font-size: 1.6rem;
+  border: .1rem black solid;
+  border-radius: 0.5rem;
+  background-color: gold;
+  cursor: pointer;
+  align-self: center;
+}
+
+.back-button {
+  color:#3e35e8;
+  cursor: pointer;
+}

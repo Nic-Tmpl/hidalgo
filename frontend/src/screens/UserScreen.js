@@ -24,7 +24,7 @@ function UserScreen() {
   const { orders } = orderList;
   const [id, setId] = useState(userInfo.id);
   const [email, setEmail] = useState(userInfo.email);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(userInfo.password);
   const [firstName, setFirstName] = useState(userInfo.first_name);
   const [lastName, setLastName] = useState(userInfo.last_name);
 
@@ -52,26 +52,16 @@ function UserScreen() {
   return (
       loading ? <div>loading...</div> :
       error ? <div>{error}</div> :
-      <div className="form-container">
-        <div className="account-info">
-            <h1>Account Information</h1>
-            <h3>Email:</h3>
-            <p>{userInfo.email}</p>
-            <h3>First Name:</h3>
-            <p>{userInfo.first_name}</p>
-            <h3>Last Name:</h3>
-            <p>{userInfo.last_name}</p>          
-            <button onClick={() => openModal()}>Edit Details/Change Password</button>
-        </div>
+      <div>
       { modal ?
+        <div className="form-container">
+        <div className="form-content">
+            <div className="back-button" onClick={() => openModal()}>Back</div>
+            <h1 className="payment-header">Edit Details</h1>
             <form onSubmit={submitHandler}>
                 <section>
                     <label htmlFor="email">Email: </label>
                     <input id="email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </section>
-                <section>
-                    <label htmlFor="password">Password: </label>
-                    <input id="password" name="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
                 </section>
                 <section>
                     <label htmlFor="firstName">First Name: </label>
@@ -83,11 +73,25 @@ function UserScreen() {
                 </section>
                 <button type="submit">Update Info</button>
             </form>
+          </div>
+          </div>
          :
-         <div className="orders">
+         <div className="form-container-2">
+         <div className="placeorder">
+         <div className="user-account-info">
+             <h1>Account Information</h1>
+             <h3>Email:</h3>
+             <p>{userInfo.email}</p>
+             <h3>First Name:</h3>
+             <p>{userInfo.first_name}</p>
+             <h3>Last Name:</h3>
+             <p>{userInfo.last_name}</p>          
+             <button onClick={() => openModal()}>Edit Details</button>
+         </div>
+         <div className="order-list">
             <h1>Order History</h1>
             {orders ? 
-            <ul>
+            <ul className="cart-list-container">
             { orders.map(order =>
               <li key={order.id}>
                 <div className="order-info">
@@ -101,6 +105,8 @@ function UserScreen() {
             <div>No Order History</div>
             }  
         </div> 
+      </div>
+    </div>
     }
     </div>
     );
