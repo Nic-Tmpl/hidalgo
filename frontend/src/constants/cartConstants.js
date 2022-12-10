@@ -4,3 +4,6 @@ export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM';
 /* Shipping info */
 export const CART_SAVE_SHIPPING = 'CART_SAVE_SHIPPING';
 export const CART_SAVE_PAYMENT = 'CART_SAVE_PAYMENT';
+
+/* Cart Deletion on Order */
+export const CART_DELETE_ALL = ' CART_DELETE_ALL';

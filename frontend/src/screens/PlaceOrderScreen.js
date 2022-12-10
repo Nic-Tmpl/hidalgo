@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckoutSteps from '../components/checkoutSteps';
 import { makeOrder } from '../actions/orderActions';
+import { clearCart } from '../actions/cartActions';
 
 
 
@@ -26,6 +27,8 @@ function PlaceOrderScreen() {
 
     const placeOrderHandler = () => {
         dispatch(makeOrder(userInfo.id, cartTotal, cartItems));
+        dispatch(clearCart());
+        console.log(cartItems);
         navigate("/congrats");
     }
 
