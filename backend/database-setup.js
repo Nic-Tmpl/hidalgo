@@ -30,7 +30,7 @@ const createTables = async () => {
       category        INT,
       price           DECIMAL       NOT NULL,
       rating          DECIMAL,
-      numReviews      INT, 
+      numreviews      INT, 
       FOREIGN KEY (category) REFERENCES categories(id)
     );
   `
