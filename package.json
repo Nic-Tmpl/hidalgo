@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "build": "cd frontend/ && npm install && npm run build"
+    "build": "cd frontend/ && npm install && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "cacheDirectories": [
     "node_modules",
