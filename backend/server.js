@@ -3,9 +3,9 @@ const passport = require('passport');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const cors = require('cors');
-const db = require('./backend/db');
-const { SECRET } = require('./backend/config');
-const mountRoutes = require('./backend/routes/index');
+const db = require('./db');
+const { SECRET } = require('./config');
+const mountRoutes = require('./routes/index');
 
 const app = express();
 

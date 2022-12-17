@@ -4,9 +4,13 @@
   "description": "An E-commerce app with strange product choices...",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node backend/server.js",
     "build": "cd frontend/ && npm install && npm run build"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "frontend/node_modules"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nic-Tmpl/ecommerce-project.git"
