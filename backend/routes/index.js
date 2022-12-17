@@ -12,7 +12,7 @@ module.exports = app => {
     app.use('/products', products);
     app.use('/', auth);
 
-    app.get('/', (req, res, next) => {
+   /* app.get('/', (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
@@ -22,5 +22,5 @@ module.exports = app => {
             }
         });
     
-    });
+    });*/
 };
