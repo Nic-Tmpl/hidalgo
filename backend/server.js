@@ -30,8 +30,8 @@ app.use(passport.authenticate('session'));
 //brings in routers
 mountRoutes(app);
 
+const port = PORT || 80; //either runs environment variable or heroku default port
 
-
-app.listen(PORT, () => {
-    console.log(`app is listening on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`app is listening on port ${port}`);
 });
