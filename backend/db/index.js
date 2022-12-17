@@ -1,21 +1,14 @@
-const { Pool, Client } = require('pg')
-const connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
- 
+const { Pool } = require('pg');
+const { DB } = require('../config');
+
 const pool = new Pool({
-  connectionString,
+    user: DB.PGUSER,
+    host: DB.PGHOST,
+    database: DB.PGDATABASE,
+    password: DB.PGPASSWORD,
+    port: DB.PGPORT,
 })
- 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
- 
-const client = new Client({
-  connectionString,
-})
-client.connect()
- 
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  client.end()
-})
+
+module.exports = {
+    query: (text, params) => pool.query(text, params),
+}
