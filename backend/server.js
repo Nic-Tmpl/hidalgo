@@ -10,7 +10,7 @@ const mountRoutes = require('./routes/index');
 
 const app = express();
 
-const root = path.join(__dirname, '../frontend/', 'build');
+const root = path.join(__dirname, 'build');
 
 app.use(express.static(root));
 
@@ -39,7 +39,7 @@ mountRoutes(app);
 const PORT = process.env.PORT || 80; //either runs environment variable or heroku default port
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
