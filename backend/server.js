@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
@@ -8,6 +9,8 @@ const { SECRET } = require('./config');
 const mountRoutes = require('./routes/index');
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(cors());
 app.use(express.json());
@@ -32,6 +35,10 @@ app.use(passport.authenticate('session'));
 mountRoutes(app);
 
 const PORT = process.env.PORT || 80; //either runs environment variable or heroku default port
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`app is listening on port ${PORT}`);
