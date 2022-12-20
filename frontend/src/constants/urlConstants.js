@@ -1,2 +1,7 @@
 //cross-origin URL for localhost production build
-export const API_URL =  process.env.PORT || 'http://localhost:5000';
+const env = process.env.NODE_ENV || 'development';
+export const API_URL =  'https://localhost:5000';
+
+if (env !== 'development') {
+    API_URL = 'https://hidalgo.herokuapp.com'
+}
