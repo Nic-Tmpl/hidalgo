@@ -1,2 +1,2 @@
 //cross-origin URL for localhost production build
-export const API_URL =  'https://hidalgo.herokuapp.com';
+export const API_URL =  'api';
