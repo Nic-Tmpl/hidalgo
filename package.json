@@ -4,9 +4,9 @@
   "description": "An E-commerce app with strange product choices...",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
     "build": "cd frontend/ && npm install && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "start": "node backend/server.js"
   },
   "cacheDirectories": [
     "node_modules",
