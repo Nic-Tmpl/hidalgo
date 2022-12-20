@@ -11,16 +11,4 @@ module.exports = app => {
     app.use('/orders', orders);
     app.use('/products', products);
     app.use('/', auth);
-
-   /* app.get('/', (req, res, next) => {
-
-        res.status(200).json({
-            status: 'success',
-            data: {
-                name: 'hidalgo',
-                version: '1.0.0'
-            }
-        });
-    
-    });*/
 };
