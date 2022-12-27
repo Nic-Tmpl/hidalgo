@@ -18,6 +18,7 @@ if (env !== 'development') {
 };
 
 const pool = new Pool(db);
+pool.connect();
 
 module.exports = {
     query: (text, params) => pool.query(text, params),
