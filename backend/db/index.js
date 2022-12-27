@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const { DB } = require('../config');
 const env = process.env.NODE_ENV || 'development';
 
-let connectionString = {
+let db = {
     user: DB.PGUSER,
     host: DB.PGHOST,
     database:DB.PGDATABASE,
@@ -11,13 +11,13 @@ let connectionString = {
 }
 
 if (env !== 'development') {
-    connectionString = {
+    db = {
         connectionString: process.env.DATABASE_URL,
-        ssl: true
+        ssl: { rejectUnauthorized: false }
     };
 };
 
-const pool = new Pool(connectionString);
+const pool = new Pool(db);
 
 module.exports = {
     query: (text, params) => pool.query(text, params),
