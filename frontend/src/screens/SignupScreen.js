@@ -26,7 +26,7 @@ function SignupScreen() {
             dispatch(login(email, password));
             navigate('/');
         }
-    })
+    }, [userInfo]);
 
 
 
