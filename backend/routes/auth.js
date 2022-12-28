@@ -54,7 +54,7 @@ router.post('/signup', async(req, res) => {
             const { rows } = await db.query(`INSERT INTO users (email, password, first_name, last_name)
                                              VALUES ($1, $2, $3, $4)`,
                             [email, hashedPassword, first_name, last_name]);
-            res.send(rows);
+            res.send('User Created!');
         }  else {
             res.send('User already Exists!');
         }});
