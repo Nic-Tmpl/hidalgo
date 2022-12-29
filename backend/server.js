@@ -5,7 +5,7 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const cors = require('cors');
 const db = require('./db');
-const { SECRET } = require('./config');
+//const { SECRET } = require('./config');
 const mountRoutes = require('./routes/index');
 
 const app = express();
@@ -25,7 +25,7 @@ const store = new pgSession({
 
 app.use(session({
     store: store,
-    secret: SECRET,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } //30 days
@@ -44,5 +44,4 @@ app.get('/*', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`app is listening on port ${PORT}`);
-    console.log(root);
 });
