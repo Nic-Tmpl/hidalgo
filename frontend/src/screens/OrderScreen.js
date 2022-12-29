@@ -30,6 +30,7 @@ function OrderScreen() {
    }, [orderDetails]);
 
    if (order !== undefined) {
+    console.log(order);
     setOrderId(order[0].id);
     setOrderStatus(order[0].status);
     setOrderTotal(order[0].total);
