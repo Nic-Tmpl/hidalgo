@@ -32,17 +32,17 @@ function OrderScreen() {
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
-        //order ? 
         <div className="form-container-2">
+            {order && order[0] &&  //this double checks that our order array position 0 has arrived - previously had undefined behaviour
         <div className="placeorder">
             <div className="placeorder-info">
                 <h1>Order Info</h1>
                 <h3>ORDER ID: </h3>
-                <p>{order?.id[0]}</p>
+                <p>{order[0].id}</p>
                 <h3>STATUS: </h3> 
-                <p>{order?.status[0]}</p>
+                <p>{order[0].status}</p>
                 <h3>TOTAL: </h3>
-                <p>${order?.total[0]}</p>
+                <p>${order[0].total}</p>
             </div>
             <div className="order-list">
             <ul className="cart-list-container">
@@ -60,8 +60,8 @@ function OrderScreen() {
             </li>)}
             </ul>
             </div>
-        </div>
-    </div>
+        </div>}
+    </div> 
 )};
 
 export default OrderScreen;
