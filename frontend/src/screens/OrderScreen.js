@@ -32,16 +32,17 @@ function OrderScreen() {
     return (
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
+        //order ? 
         <div className="form-container-2">
         <div className="placeorder">
             <div className="placeorder-info">
                 <h1>Order Info</h1>
                 <h3>ORDER ID: </h3>
-                <p>{order.id}</p>
+                <p>{order?.id[0]}</p>
                 <h3>STATUS: </h3> 
-                <p>{order.status}</p>
+                <p>{order?.status[0]}</p>
                 <h3>TOTAL: </h3>
-                <p>${order.total}</p>
+                <p>${order?.total[0]}</p>
             </div>
             <div className="order-list">
             <ul className="cart-list-container">
