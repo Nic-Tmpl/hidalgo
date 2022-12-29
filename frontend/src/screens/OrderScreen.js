@@ -16,7 +16,7 @@ function OrderScreen() {
 
    const { id } = useParams(); //useParams returns an object with string values
    const [userId, setuserId] = useState(userInfo.id);
-   const [orderId, setOrderId] = useState();
+   const [orderId, setOrderId] = useState(id);
    const [orderStatus, setOrderStatus] = useState('');
    const [orderTotal, setOrderTotal] = useState(0.00);
 
