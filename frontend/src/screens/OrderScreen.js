@@ -23,6 +23,7 @@ function OrderScreen() {
 
    useEffect(() => {
     dispatch(detailsOrder(intId, userId));
+    console.log(order);
    }, []);
 
 
@@ -35,7 +36,7 @@ function OrderScreen() {
             <div className="placeorder-info">
                 <h1>Order Info</h1>
                 <h3>ORDER ID: </h3>
-                <p>{order[0].id}</p>
+                <p>{order.id}</p>
                 <h3>STATUS: </h3> 
                 <p>{order[0].status}</p>
                 <h3>TOTAL: </h3>
