@@ -27,14 +27,8 @@ function OrderScreen() {
     console.log(id);
     dispatch(detailsOrder(id, userId));
     console.log(order);
-   }, [orderDetails]);
+   }, []);
 
-   if (order !== undefined) {
-    console.log(order);
-    setOrderId(order[0].id);
-    setOrderStatus(order[0].status);
-    setOrderTotal(order[0].total);
-   };
 
 
     return (
@@ -45,11 +39,11 @@ function OrderScreen() {
             <div className="placeorder-info">
                 <h1>Order Info</h1>
                 <h3>ORDER ID: </h3>
-                <p>{orderId}</p>
+                <p>{order[0].id}</p>
                 <h3>STATUS: </h3> 
-                <p>{orderStatus}</p>
+                <p>{order[0].status}</p>
                 <h3>TOTAL: </h3>
-                <p>${orderTotal}</p>
+                <p>${order[0].total}</p>
             </div>
             <div className="order-list">
             <ul className="cart-list-container">

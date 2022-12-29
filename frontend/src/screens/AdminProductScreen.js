@@ -3,6 +3,7 @@ import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProduct, listProducts, saveProduct } from '../actions/productActions';
 import axios from 'axios';
+import { API_URL } from '../constants/urlConstants';
 
 function AdminProductScreen() {
 
@@ -44,7 +45,7 @@ function AdminProductScreen() {
     /* originally this was in product actions, but for some reason would return a Promise{<fulfilled> :data } format.
      This is messier but works as intended, for reasons unknown. */
     const getCategories = async () => {
-        const { data }  =  await axios.get("/products/categories");
+        const { data }  =  await axios.get(`${API_URL}/products/categories`);
         setCategories(data);
     };
     getCategories();
