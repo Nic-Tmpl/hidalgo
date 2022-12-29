@@ -26,6 +26,7 @@ function OrderScreen() {
    useEffect(() => {
     console.log(id);
     dispatch(detailsOrder(id, userId));
+    console.log(order);
    }, [orderDetails]);
 
    if (order !== undefined) {
