@@ -15,18 +15,14 @@ function OrderScreen() {
     const { order, loading, error } = orderDetails;
 
    const { id } = useParams(); //useParams returns an object with string values
+   const intId = parseInt(id);//id string has to be converted to integer value for dispatch
    const [userId, setuserId] = useState(userInfo.id);
-   const [orderId, setOrderId] = useState(id);
-   const [orderStatus, setOrderStatus] = useState('');
-   const [orderTotal, setOrderTotal] = useState(0.00);
 
 
    const dispatch = useDispatch();
 
    useEffect(() => {
-    console.log(id);
-    dispatch(detailsOrder(id, userId));
-    console.log(order);
+    dispatch(detailsOrder(intId, userId));
    }, []);
 
 
