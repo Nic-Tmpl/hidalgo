@@ -25,11 +25,14 @@ function OrderScreen() {
 
    useEffect(() => {
     console.log(id);
-    dispatch(detailsOrder(id, userId)); 
+    dispatch(detailsOrder(id, userId));
+   }, [orderDetails]);
+
+   if (order !== undefined) {
     setOrderId(order[0].id);
     setOrderStatus(order[0].status);
     setOrderTotal(order[0].total);
-   }, [orderDetails]);
+   };
 
 
     return (
