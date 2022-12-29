@@ -24,6 +24,7 @@ function OrderScreen() {
    useEffect(() => {
     dispatch(detailsOrder(intId, userId));
     console.log(order);
+    console.log(order[0].id);
    }, []);
 
 
@@ -38,9 +39,9 @@ function OrderScreen() {
                 <h3>ORDER ID: </h3>
                 <p>{order.id}</p>
                 <h3>STATUS: </h3> 
-                <p>{order[0].status}</p>
+                <p>{order.status}</p>
                 <h3>TOTAL: </h3>
-                <p>${order[0].total}</p>
+                <p>${order.total}</p>
             </div>
             <div className="order-list">
             <ul className="cart-list-container">
