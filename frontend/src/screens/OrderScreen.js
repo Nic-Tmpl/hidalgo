@@ -23,8 +23,6 @@ function OrderScreen() {
 
    useEffect(() => {
     dispatch(detailsOrder(intId, userId));
-    console.log(order);
-    console.log(order[0].id);
    }, []);
 
 
@@ -33,7 +31,7 @@ function OrderScreen() {
         loading ? <div>loading...</div> :
         error ? <div>{error}</div> :
         <div className="form-container-2">
-            {order && order[0] &&  //this double checks that our order array position 0 has arrived - previously had undefined behaviour
+        {order && order[0] &&  //this double checks that our order array position 0 has arrived - previously had undefined behaviour
         <div className="placeorder">
             <div className="placeorder-info">
                 <h1>Order Info</h1>
